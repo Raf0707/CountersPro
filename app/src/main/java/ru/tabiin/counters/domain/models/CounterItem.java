@@ -1,4 +1,4 @@
-package ru.tabiin.counters.model;
+package ru.tabiin.counters.domain.models;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;

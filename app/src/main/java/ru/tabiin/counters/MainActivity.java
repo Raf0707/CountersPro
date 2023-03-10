@@ -10,7 +10,7 @@ import com.google.android.material.color.DynamicColors;
 
 import ru.tabiin.counters.databinding.ActivityMainBinding;
 import ru.tabiin.counters.ui.about_app.AppAboutFragment;
-import ru.tabiin.counters.ui.counters.CounterSavesFragment;
+import ru.tabiin.counters.ui.main.MainFragment;
 import ru.tabiin.counters.util.SharedPreferencesUtils;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.containerFragment, new CounterSavesFragment())
+                    .replace(R.id.containerFragment, new MainFragment())
                     .commit();
         }
 
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.counters:
 
                     getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.containerFragment, new CounterSavesFragment())
+                            .replace(R.id.containerFragment, new MainFragment())
                             .commit();
 
                     return true;
