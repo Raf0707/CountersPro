@@ -1,4 +1,4 @@
-package ru.tabiin.counters.ui.adapters;
+package ru.tabiin.counters.adapters;
 
 import android.view.View;
 import android.view.ViewGroup;
