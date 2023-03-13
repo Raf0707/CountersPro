@@ -1,11 +1,9 @@
 package ru.tabiin.counters.ui.main;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -16,7 +14,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -26,7 +23,6 @@ import java.util.Random;
 import ru.tabiin.counters.R;
 import ru.tabiin.counters.adapters.CounterAdapter;
 import ru.tabiin.counters.databinding.FragmentMainBinding;
-import ru.tabiin.counters.domain.database.CounterDatabase;
 import ru.tabiin.counters.domain.models.CounterItem;
 import ru.tabiin.counters.ui.counters.CounterActivity;
 import ru.tabiin.counters.ui.counters.CounterMainFragment;
@@ -39,14 +35,9 @@ public class MainFragment extends Fragment implements CounterAdapter.HandleCount
     private List<CounterItem> counterlist = new ArrayList<>();
     private CounterViewModel counterViewModel;
     private CounterItem counterForEdit;
+    private CounterItem currentCounterItem;
     private CounterMainFragment cmf;
-    private CounterDatabase counterDatabase;
     private CounterAdapter.MyViewHolder holder;
-    private boolean edit;
-    private String title;
-    private int target;
-    private int progress;
-    private int id;
     FragmentMainBinding binding;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,10 +54,15 @@ public class MainFragment extends Fragment implements CounterAdapter.HandleCount
 
         counterAdapter = new CounterAdapter(getContext(), this);
 
+        /*
         counterViewModel = new ViewModelProvider(this,
                 (ViewModelProvider.Factory) ViewModelProvider.AndroidViewModelFactory
                         .getInstance(getActivity().getApplication()))
                 .get(CounterViewModel.class);
+
+         */
+
+        counterViewModel = new ViewModelProvider(this).get(CounterViewModel.class);
 
         /*
         Bundle bundle = getArguments();
@@ -141,6 +137,7 @@ public class MainFragment extends Fragment implements CounterAdapter.HandleCount
 
 
         alert.setPositiveButton("ОК", (dialogInterface, i) -> {
+
             if (counterTitle.getText().toString().length() == 0) {
                 counterTitle.setText(getRandomString(12));
             }
@@ -159,10 +156,10 @@ public class MainFragment extends Fragment implements CounterAdapter.HandleCount
                         .getText().toString());
                 counterViewModel.update(counterForEdit);
             } else {
-
+                counterViewModel.insert(counterTitle.getText().toString(),
+                        Integer.parseInt(counterTarget.getText().toString()));
             }
 
-            startActivity(new Intent(getContext(), CounterActivity.class));
         });
 
         alert.setView(dialogView);
@@ -193,47 +190,19 @@ public class MainFragment extends Fragment implements CounterAdapter.HandleCount
         }
         return sb.toString();
     }
+    @Override
+    public void itemClick(CounterItem counterItem) {
+        // передать данные
+        Intent intent = new Intent(getContext(), CounterActivity.class);
+        intent.putExtra("counterItem", counterItem);
+        startActivity(intent);
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        //Проверяем по коду нужный результат
-        if(requestCode == 120) {
-            if(resultCode == Activity.RESULT_OK) {
-                //Действия при возврате результата
-                String updateTitle = data.getStringExtra("updateTitle");
-                int updateTarget = data.getIntExtra("updateTarget", 10);
-                int updateProgress = data.getIntExtra("updateProgress", progress);
-
-                CounterItem counterItem = new CounterItem(updateTitle, updateTarget,
-                        updateProgress);
-
-                title =  updateTitle;
-                target = updateTarget;
-                progress = updateProgress;
-
-                counterViewModel.update(counterItem);
-            }
-        }
-    }
-
-
-    @Override
-    public void itemClick(CounterItem counterItem) {
-        Bundle bundle = new Bundle();
-        FragmentManager fragmentManager = getFragmentManager();
-        bundle.putString("title", counterItem.title);
-        bundle.putInt("target", counterItem.target);
-        bundle.putInt("progress", counterItem.progress);
-        bundle.putInt("id", counterItem.id);
-        cmf.setArguments(bundle);
-        //fragmentManager.beginTransaction()
-                //.replace(R.id.containerFragment, cmf).commit();
-        startActivity(new Intent(getContext(), CounterActivity.class));
-
-        Snackbar.make(binding.getRoot(), String.valueOf(counterItem.id),
-                Snackbar.LENGTH_LONG).show();
-
+        if (data == null) return;
+        currentCounterItem = (CounterItem) data.getSerializableExtra("counterItem");
+        counterViewModel.update(currentCounterItem);
     }
 
     @Override
@@ -246,5 +215,7 @@ public class MainFragment extends Fragment implements CounterAdapter.HandleCount
         this.counterForEdit = counterItem;
         onMaterialAlert(true);
     }
+
+
 
 }

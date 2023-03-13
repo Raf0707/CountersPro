@@ -21,7 +21,7 @@ public abstract class CounterDatabase extends RoomDatabase {
             INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             CounterDatabase.class, "counter_database")
                     .allowMainThreadQueries()
-                    .fallbackToDestructiveMigration()
+                    //.fallbackToDestructiveMigration()
                     .build();
         }
 
