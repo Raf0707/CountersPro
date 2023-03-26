@@ -8,35 +8,24 @@
     android:layout_height="match_parent"
     tools:context=".ui.counters.CounterMainFragment">
 
-    <com.google.android.material.textfield.TextInputLayout
+    <TextView
+        android:id="@+id/currentCounterProgressTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:hint="Описание цели"
+        android:gravity="center"
+        android:shadowColor="@color/purple_400"
+        android:shadowDx="3"
+        android:shadowDy="3"
+        android:shadowRadius="1.6"
+        android:textSize="150sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.523">
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"    app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.517" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/counterDescription"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:gravity="center"
-            android:textColor="@color/purple_300"
-            android:textColorHint="@color/white"
-            android:textCursorDrawable="@drawable/green_cursor"
-            android:textSize="25sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.523" />
 
-    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/counterBtnMinus"

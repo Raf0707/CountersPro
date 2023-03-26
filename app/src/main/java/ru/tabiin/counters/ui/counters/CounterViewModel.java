@@ -16,6 +16,8 @@ import ru.tabiin.counters.domain.repository.CounterRepository;
 public class CounterViewModel extends AndroidViewModel {
     private LiveData<List<CounterItem>> counterlist;
     private CounterRepository counterRepository;
+    
+    public MutableLiveData<CounterItem> currentCounter;
 
     public CounterViewModel(@NonNull Application application) {
         super(application);
@@ -26,6 +28,10 @@ public class CounterViewModel extends AndroidViewModel {
 
     public LiveData<List<CounterItem>> getCounterlistObserver() {
         return counterlist;
+    }
+
+    public MutableLiveData<CounterItem> getCurrentCounter(MutableLiveData<CounterItem> currentCounter) {
+        return currentCounter;
     }
     public List<CounterItem> findByNames(String title) {
         return counterRepository.findByName(title);
