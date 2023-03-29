@@ -16,7 +16,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -26,23 +25,24 @@ import java.util.Random;
 import ru.tabiin.counters.R;
 import ru.tabiin.counters.adapters.CounterAdapter;
 import ru.tabiin.counters.databinding.FragmentMainBinding;
+import ru.tabiin.counters.databinding.FragmentMainSwipeBinding;
 import ru.tabiin.counters.domain.database.CounterDatabase;
 import ru.tabiin.counters.domain.models.CounterItem;
-import ru.tabiin.counters.ui.counters.CounterBetaFragment;
-import ru.tabiin.counters.ui.counters.CounterMainFragment;
-import ru.tabiin.counters.ui.counters.CounterViewModel;
-import ru.tabiin.counters.ui.counters.GestureCounterFragment;
+import ru.tabiin.counters.ui.counters.circle_progress.CounterBetaFragment;
+import ru.tabiin.counters.ui.counters.counter_progress.CounterMainFragment;
+import ru.tabiin.counters.ui.counters.counter_progress.CounterViewModel;
+import ru.tabiin.counters.ui.counters.swipe_counter.GestureCounterFragment;
 
-public class MainFragment extends Fragment implements CounterAdapter.HandleCounterClick {
+public class MainProgressFragment extends Fragment implements CounterAdapter.HandleCounterClick {
 
     private CounterAdapter counterAdapter;
-    public static WeakReference<MainFragment> ctx = null;
+    public static WeakReference<MainProgressFragment> ctx = null;
     private List<CounterItem> counterlist = new ArrayList<>();
     private CounterViewModel counterViewModel;
     private CounterItem counterForEdit;
     private CounterMainFragment counterMainFragment;
-    private CounterBetaFragment counterBetaFragment;
-    private GestureCounterFragment gestureCounterFragment;
+    //private CounterBetaFragment counterBetaFragment;
+    //private GestureCounterFragment gestureCounterFragment;
     private CounterDatabase counterDatabase;
     private CounterAdapter.MyViewHolder holder;
     private boolean edit;
@@ -65,8 +65,8 @@ public class MainFragment extends Fragment implements CounterAdapter.HandleCount
         binding = FragmentMainBinding.inflate(getLayoutInflater());
 
         counterMainFragment = new CounterMainFragment();
-        counterBetaFragment = new CounterBetaFragment();
-        gestureCounterFragment = new GestureCounterFragment();
+        //counterBetaFragment = new CounterBetaFragment();
+        //gestureCounterFragment = new GestureCounterFragment();
 
         counterAdapter = new CounterAdapter(getContext(), this);
 
@@ -76,7 +76,7 @@ public class MainFragment extends Fragment implements CounterAdapter.HandleCount
                 .get(CounterViewModel.class);
 
 
-        /*
+
         Bundle bundle = getArguments();
         if (bundle != null) {
             title = bundle.getString("title", counterItem.title);
@@ -88,7 +88,7 @@ public class MainFragment extends Fragment implements CounterAdapter.HandleCount
             counterViewModel.update(counterItem);
         }
 
-         */
+
 
         ctx = new WeakReference<>(this);
 
@@ -238,8 +238,6 @@ public class MainFragment extends Fragment implements CounterAdapter.HandleCount
         bundle.putInt("progress", counterItem.progress);
         bundle.putInt("id", counterItem.id);
         counterMainFragment.setArguments(bundle);
-        counterBetaFragment.setArguments(bundle);
-        gestureCounterFragment.setArguments(bundle);
 
         getParentFragmentManager().beginTransaction()
                 .replace(R.id.containerFragment, counterMainFragment).commit();

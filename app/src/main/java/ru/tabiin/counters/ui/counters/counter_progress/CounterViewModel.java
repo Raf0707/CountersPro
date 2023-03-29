@@ -1,4 +1,4 @@
-package ru.tabiin.counters.ui.counters;
+package ru.tabiin.counters.ui.counters.counter_progress;
 
 import android.app.Application;
 
