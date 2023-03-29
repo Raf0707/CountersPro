@@ -111,7 +111,6 @@ public class CounterMainFragment extends Fragment {
         handler = new Handler();
 
 
-
         binding.saveCounterEditions.setOnClickListener(view -> {
             // saveText()
             binding.counterTarget.setText(binding.counterTarget.getText().toString()

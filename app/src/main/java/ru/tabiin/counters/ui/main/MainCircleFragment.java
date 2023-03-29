@@ -13,9 +13,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -81,6 +84,26 @@ public class MainCircleFragment extends Fragment implements CounterAdapter.Handl
 
         binding.fabAddCounter.setOnClickListener(v -> {
             onMaterialAlert(false);
+        });
+
+        binding.searchCounters.clearFocus();
+        binding.searchCounters.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                //filterList(s);
+                //counterDatabase.counterDao().findByNames(binding.searchCounters)
+                counterViewModel.findByNames(s);
+                return true;
+            }
+        });
+
+        binding.searchCounters.setOnClickListener(v -> {
+            binding.searchCounters.clearFocus();
         });
 
         initRecycleView();
@@ -189,6 +212,28 @@ public class MainCircleFragment extends Fragment implements CounterAdapter.Handl
 
         }
         return sb.toString();
+    }
+
+    private void filterList(String text) {
+        List<CounterItem> filteredList = new ArrayList<>();
+        for (CounterItem ci : counterlist) {
+            if (ci.getTitle().toLowerCase().contains(text.toLowerCase())) {
+                filteredList.add(ci);
+            }
+
+            /*
+            if (Integer.parseInt(text) >= 1 && Integer.parseInt(text) <= 99) {
+                filteredList.add(names.get(Integer.parseInt(text) - 1));
+            }
+
+             */
+        }
+
+        if (filteredList.isEmpty()) {
+            Snackbar.make(binding.getRoot(), "Не найдено", BaseTransientBottomBar.LENGTH_SHORT);
+        } else {
+            counterAdapter.setFilteredList(filteredList);
+        }
     }
 
     @Override
