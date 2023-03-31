@@ -141,7 +141,7 @@ public class AppAboutFragment extends Fragment {
         });
 
         binding.otherAppsBtn.setOnLongClickListener(v -> {
-            addOnClick(v, getString(R.string.vk_tabiin_coyplink),
+            addOnClick(v, "Tabiin's Apps article link copied",
                     ClipData.newPlainText(getString(R.string.getContext),
                             getString(R.string.tabiin_android_dev)));
             return true;
@@ -323,7 +323,7 @@ public class AppAboutFragment extends Fragment {
                         R.color.purple_300));
 
         binding.sourceCodeBtnRamadan.setOnLongClickListener(v -> {
-            addOnClick(v, "link to download Al Asma Ul Husna copied",
+            addOnClick(v, "link to download Ramadan copied",
                     ClipData.newPlainText(getString(R.string.getContext),
                             "https://github.com/Raf0707/Ramadan"));
             return true;
@@ -335,7 +335,7 @@ public class AppAboutFragment extends Fragment {
                         R.color.purple_300));
 
         binding.downloadRamadanApp.setOnLongClickListener(v -> {
-            addOnClick(v, getString(R.string.link_to_source_copied),
+            addOnClick(v, "link to Ramadan sourse copied",
                     ClipData.newPlainText(getString(R.string.getContext),
                             "https://apps.rustore.ru/app/ru.tabiin.ramadan"));
             return true;

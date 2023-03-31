@@ -26,7 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Внешний вид"
-                android:textSize="41sp"
+                android:textSize="31sp"
                 android:textStyle="bold"/>
             <RadioGroup
                 android:id="@+id/appThemeRadioGroup"
@@ -37,19 +37,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Follow system"
-                    android:textSize="38sp"/>
+                    android:textSize="28sp"/>
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/setLightTheme"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Light mode"
-                    android:textSize="38sp"/>
+                    android:textSize="28sp"/>
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/setNightTheme"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Night mode"
-                    android:textSize="38sp"/>
+                    android:textSize="28sp"/>
 
             </RadioGroup>
 
@@ -60,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="8dp"
                 android:text="Use Dynamic colors"
-                android:textSize="38sp"/>
+                android:textSize="28sp"/>
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
