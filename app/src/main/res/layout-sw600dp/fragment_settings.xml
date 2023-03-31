@@ -26,7 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Внешний вид"
-                android:textSize="21sp"
+                android:textSize="41sp"
                 android:textStyle="bold"/>
             <RadioGroup
                 android:id="@+id/appThemeRadioGroup"
@@ -37,19 +37,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Follow system"
-                    android:textSize="18sp"/>
+                    android:textSize="38sp"/>
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/setLightTheme"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Light mode"
-                    android:textSize="18sp"/>
+                    android:textSize="38sp"/>
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/setNightTheme"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Night mode"
-                    android:textSize="18sp"/>
+                    android:textSize="38sp"/>
                 
             </RadioGroup>
 
@@ -60,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="8dp"
                 android:text="Use Dynamic colors"
-                android:textSize="18sp"/>
+                android:textSize="38sp"/>
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
@@ -69,9 +69,10 @@
         android:id="@+id/backFromSettingsFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="300dp"
-        android:layout_marginTop="400dp"
+        android:layout_marginLeft="850dp"
+        android:layout_marginTop="10dp"
         android:text="back">
+
     </com.google.android.material.button.MaterialButton>
 
 </LinearLayout>

@@ -48,7 +48,7 @@ public class TutorialFragment extends Fragment {
                     .show();
         });
 
-        binding.deleteCounterBtn.setOnClickListener(v -> {
+        binding.deleteDBCounterItem.setOnClickListener(v -> {
             Snackbar.make(binding.getRoot(),
                     "удалить счетчик", Snackbar.LENGTH_SHORT)
                     .setAction("понятно", view -> Toast.makeText(getContext(),
