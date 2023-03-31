@@ -26,6 +26,7 @@ import ru.tabiin.counters.ui.counters.circle_progress.CounterBetaFragment;
 import ru.tabiin.counters.ui.counters.counter_progress.CounterMainFragment;
 import ru.tabiin.counters.ui.counters.counter_progress.CounterViewModel;
 import ru.tabiin.counters.ui.main.MainProgressFragment;
+import ru.tabiin.counters.ui.main.MainSwipeFragment;
 import ru.tabiin.counters.ui.settings.SettingsFragment;
 import ru.tabiin.counters.ui.settings.TutorialFragment;
 import ru.tabiin.counters.util.OnSwipeTouchListener;
@@ -40,6 +41,7 @@ public class GestureCounterFragment extends Fragment {
     private String selectMode = "Circle counter";
     private CounterItem counterItem;
     private CounterViewModel counterViewModel;
+    private MainSwipeFragment mainSwipeFragment;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -72,6 +74,8 @@ public class GestureCounterFragment extends Fragment {
 
         cmf = new CounterMainFragment();
         cbf = new CounterBetaFragment();
+
+        mainSwipeFragment = new MainSwipeFragment();
 
         handler = new Handler();
 
@@ -116,7 +120,7 @@ public class GestureCounterFragment extends Fragment {
 
         binding.openCounterListBtn.setOnClickListener(view -> {
             changeFragment(requireActivity(),
-                    new MainProgressFragment(),
+                    mainSwipeFragment,
                     R.id.containerFragment,
                     savedInstanceState
             );
