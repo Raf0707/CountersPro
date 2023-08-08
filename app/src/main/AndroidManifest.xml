@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.VIBRATE"/>
+
     <application
         android:name=".App"
         android:allowBackup="false"
@@ -12,9 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Counters"
         tools:targetApi="31">
-        <activity
-            android:name=".ui.counters.CounterActivity"
-            android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">

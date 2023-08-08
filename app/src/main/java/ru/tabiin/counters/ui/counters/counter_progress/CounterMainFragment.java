@@ -1,13 +1,18 @@
 package ru.tabiin.counters.ui.counters.counter_progress;
 
+import static android.content.Context.VIBRATOR_SERVICE;
+import static androidx.core.app.AppOpsManagerCompat.*;
 import static ru.tabiin.counters.util.UtilFragment.changeFragment;
 
 import android.animation.ObjectAnimator;
 import android.animation.TimeInterpolator;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,10 +28,12 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.text.MessageFormat;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import ru.tabiin.counters.R;
 import ru.tabiin.counters.adapters.CounterAdapter;
+import ru.tabiin.counters.databinding.FragmentCounterMainBinding;
 import ru.tabiin.counters.domain.database.CounterDatabase;
 import ru.tabiin.counters.domain.models.CounterItem;
 import ru.tabiin.counters.domain.repository.CounterRepository;
@@ -67,11 +74,13 @@ public class CounterMainFragment extends Fragment {
 
     private static final long GAUGE_ANIMATION_DURATION = 10;
 
+    private Vibrator vibrator;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        binding = ru.tabiin.counters.databinding.FragmentCounterMainBinding
+        binding = FragmentCounterMainBinding
                 .inflate(inflater, container, false);
 
         counterViewModel = new ViewModelProvider(this,
@@ -83,6 +92,8 @@ public class CounterMainFragment extends Fragment {
 
         counterMainFragment = new CounterMainFragment();
         mainFragment = new MainProgressFragment();
+
+        vibrator = vibrator = (Vibrator) requireContext().getSystemService(Context.VIBRATOR_SERVICE);
 
         Bundle bundle = getArguments();
         if (bundle != null) {
@@ -198,6 +209,8 @@ public class CounterMainFragment extends Fragment {
 
         binding.counterBtnPlus.setOnClickListener(view -> {
 
+            vibrator.vibrate(60);
+
             binding.counterTarget.setText(binding.counterTarget.getText().toString()
                     .replaceAll("[\\.\\-,\\s]+", ""));
 
@@ -299,6 +312,9 @@ public class CounterMainFragment extends Fragment {
         });
 
         binding.counterBtnMinus.setOnClickListener(view -> {
+
+            vibrator.vibrate(60);
+            
             currentCount--;
             if (currentCount < 0) {
                 currentCount = 0;
