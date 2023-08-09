@@ -84,6 +84,7 @@
                         </RadioGroup>
 
                         <com.google.android.material.switchmaterial.SwitchMaterial
+                            style="@style/Widget.Material3.CompoundButton.MaterialSwitch"
                             android:id="@+id/dynamicColorsSwitch"
                             android:enabled="true"
                             android:layout_width="match_parent"
@@ -125,6 +126,7 @@
                             android:textStyle="bold"/>
 
                         <com.google.android.material.switchmaterial.SwitchMaterial
+                            style="@style/Widget.Material3.CompoundButton.MaterialSwitch"
                             android:id="@+id/animationTransactionSwitch"
                             android:enabled="true"
                             android:layout_width="match_parent"
@@ -215,6 +217,7 @@
                             android:textStyle="bold"/>
 
                         <com.google.android.material.switchmaterial.SwitchMaterial
+                            style="@style/Widget.Material3.CompoundButton.MaterialSwitch"
                             android:id="@+id/vibratorBtnsSwitch"
                             android:enabled="true"
                             android:layout_marginTop="20dp"
@@ -247,6 +250,7 @@
                         </RadioGroup>
 
                         <com.google.android.material.switchmaterial.SwitchMaterial
+                            style="@style/Widget.Material3.CompoundButton.MaterialSwitch"
                             android:id="@+id/vibratorCounterBtnsSwitch"
                             android:enabled="true"
                             android:layout_marginLeft="20dp"
@@ -257,6 +261,7 @@
                             android:textSize="18sp"/>
 
                         <com.google.android.material.switchmaterial.SwitchMaterial
+                            style="@style/Widget.Material3.CompoundButton.MaterialSwitch"
                             android:id="@+id/vibratorToolBarBtnSwitch"
                             android:enabled="true"
                             android:layout_marginLeft="20dp"
@@ -268,7 +273,8 @@
 
 
                         <com.google.android.material.switchmaterial.SwitchMaterial
-                            android:id="@+id/vibratorEndSwitch"
+                            style="@style/Widget.Material3.CompoundButton.MaterialSwitch"
+                            android:id="@+id/clickVibratorEndSwitch"
                             android:enabled="true"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -279,6 +285,7 @@
                             android:textSize="18sp"/>
 
                         <com.google.android.material.switchmaterial.SwitchMaterial
+                            style="@style/Widget.Material3.CompoundButton.MaterialSwitch"
                             android:id="@+id/clickListenerSwitch"
                             android:enabled="true"
                             android:layout_marginTop="20dp"
@@ -393,6 +400,7 @@
                         </com.google.android.material.button.MaterialButton>
 
                         <com.google.android.material.switchmaterial.SwitchMaterial
+                            style="@style/Widget.Material3.CompoundButton.MaterialSwitch"
                             android:id="@+id/longPressSwitch"
                             android:enabled="true"
                             android:layout_width="match_parent"
@@ -440,7 +448,6 @@
                                 android:layout_height="wrap_content"
                                 android:text="Долгий клик"
                                 android:layout_marginTop="20dp"
-                                android:layout_marginLeft="20dp"
                                 android:padding="10dp"
                                 android:gravity="center"
                                 android:textSize="21sp"

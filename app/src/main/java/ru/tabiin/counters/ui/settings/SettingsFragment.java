@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.RadioGroup;
 
 import androidx.annotation.NonNull;
@@ -38,7 +39,10 @@ public class SettingsFragment extends Fragment {
         binding.clickVibratorRadioGroup.setVisibility(View.GONE);
         binding.vibratorCounterBtnsSwitch.setVisibility(View.GONE);
         binding.vibratorToolBarBtnSwitch.setVisibility(View.GONE);
-        binding.vibratorEndSwitch.setVisibility(View.GONE);
+        binding.clickVibratorEndSwitch.setVisibility(View.GONE);
+        binding.counterBtnsCheckVibrateLayout.setVisibility(View.GONE);
+        binding.toolbarBtnsCheckVibrateLayoutLeft.setVisibility(View.GONE);
+        binding.toolbarBtnsCheckVibrateLayoutRight.setVisibility(View.GONE);
         //assert binding.textViewClick != null;
         binding.textViewClickLayout.setVisibility(View.GONE);
         binding.plusValLayout.setVisibility(View.GONE);
@@ -53,6 +57,65 @@ public class SettingsFragment extends Fragment {
         binding.minusValLongLayout.setVisibility(View.GONE);
         binding.resetValLongLayout.setVisibility(View.GONE);
         binding.saveLongClickObserver.setVisibility(View.GONE);
+
+        binding.clickSwipeGroup.setVisibility(View.GONE);
+        binding.longClickSwipeGroup.setVisibility(View.GONE);
+        binding.doubleClickSwipeGroup.setVisibility(View.GONE);
+        binding.swipeTopGroup.setVisibility(View.GONE);
+        binding.swipeDownGroup.setVisibility(View.GONE);
+        binding.swipeRightGroup.setVisibility(View.GONE);
+        binding.swipeLeftGroup.setVisibility(View.GONE);
+
+        binding.valueClickInput.setVisibility(View.GONE);
+        binding.valueLongClickInput.setVisibility(View.GONE);
+        binding.valueDoubleClickInput.setVisibility(View.GONE);
+        binding.valueSwipeTopInput.setVisibility(View.GONE);
+        binding.valueSwipeDownInput.setVisibility(View.GONE);
+        binding.valueSwipeRightInput.setVisibility(View.GONE);
+        binding.valueSwipeLeftInput.setVisibility(View.GONE);
+
+        binding.swipeCheckVibrateLayout.setVisibility(View.VISIBLE);
+        // сделать всю вибрацию от 0 до 1000
+
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        binding.appThemeRadioGroup.check(SharedPreferencesUtils.getInteger(requireContext(), "checkedButton", R.id.setFollowSystemTheme));
+        binding.appThemeRadioGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            switch (checkedId) {
+                case R.id.setFollowSystemTheme:
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+                    SharedPreferencesUtils.saveInteger(requireContext(), "checkedButton", R.id.setFollowSystemTheme);
+                    SharedPreferencesUtils.saveInteger(requireContext(), "nightMode", 1);
+                    requireActivity().recreate();
+                    break;
+                case R.id.setLightTheme:
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    SharedPreferencesUtils.saveInteger(requireContext(), "checkedButton", R.id.setLightTheme);
+                    SharedPreferencesUtils.saveInteger(requireContext(), "nightMode", 2);
+                    requireActivity().recreate();
+                    break;
+                case R.id.setNightTheme:
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    SharedPreferencesUtils.saveInteger(requireContext(), "checkedButton", R.id.setNightTheme);
+                    SharedPreferencesUtils.saveInteger(requireContext(), "nightMode", 3);
+                    requireActivity().recreate();
+                    break;
+            }
+        });
+
+
+        switchMaterial.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            DynamicColors.applyToActivitiesIfAvailable(getActivity().getApplication());
+            DynamicColors.applyToActivitiesIfAvailable(getActivity().getApplication(),
+                    R.style.Theme_Counters);
+            SharedPreferencesUtils.saveBoolean(requireContext(), "useDynamicColors", isChecked);
+            requireActivity().recreate();
+        });
 
         binding.animationTransactionSwitch.setOnCheckedChangeListener((v, isChecked) -> {
             if (isChecked) {
@@ -71,17 +134,17 @@ public class SettingsFragment extends Fragment {
                 animation.setDuration(1000);
 
                 binding.clickVibratorRadioGroup.startAnimation(animation);
-                binding.vibratorEndSwitch.startAnimation(animation);
+                binding.clickVibratorEndSwitch.startAnimation(animation);
 
 
                 binding.clickVibratorRadioGroup.setVisibility(View.VISIBLE);
-                binding.vibratorEndSwitch.setVisibility(View.VISIBLE);
+                binding.clickVibratorEndSwitch.setVisibility(View.VISIBLE);
 
             } else {
                 binding.clickVibratorRadioGroup.setVisibility(View.GONE);
                 binding.vibratorCounterBtnsSwitch.setVisibility(View.GONE);
                 binding.vibratorToolBarBtnSwitch.setVisibility(View.GONE);
-                binding.vibratorEndSwitch.setVisibility(View.GONE);
+                binding.clickVibratorEndSwitch.setVisibility(View.GONE);
             }
         });
 
@@ -91,6 +154,9 @@ public class SettingsFragment extends Fragment {
                     //full vibration
                     binding.vibratorToolBarBtnSwitch.setVisibility(View.GONE);
                     binding.vibratorCounterBtnsSwitch.setVisibility(View.GONE);
+                    binding.counterBtnsCheckVibrateLayout.setVisibility(View.GONE);
+                    binding.toolbarBtnsCheckVibrateLayoutRight.setVisibility(View.GONE);
+                    binding.toolbarBtnsCheckVibrateLayoutLeft.setVisibility(View.GONE);
                     break;
                 case R.id.partVibration:
                     AlphaAnimation animation = new AlphaAnimation(0, 1);
@@ -102,23 +168,28 @@ public class SettingsFragment extends Fragment {
                     break;
             }
 
-            if (binding.vibratorToolBarBtnSwitch.isChecked() && binding.vibratorCounterBtnsSwitch.isChecked()) {
-                binding.partVibration.setChecked(false);
-                binding.fullVibration.setChecked(true);
-                binding.vibratorToolBarBtnSwitch.setVisibility(View.GONE);
-                binding.vibratorCounterBtnsSwitch.setVisibility(View.GONE);
+        });
+
+        binding.vibratorCounterBtnsSwitch.setOnCheckedChangeListener((v, isChecked) -> {
+            if (isChecked) {
+                Animation animation = new AlphaAnimation(0, 1);
+                binding.counterBtnsCheckVibrateLayout.startAnimation(animation);
+                binding.counterBtnsCheckVibrateLayout.setVisibility(View.VISIBLE);
+            } else {
+                binding.counterBtnsCheckVibrateLayout.setVisibility(View.GONE);
             }
         });
 
         binding.vibratorToolBarBtnSwitch.setOnCheckedChangeListener((v, isChecked) -> {
             if (isChecked) {
-
-            }
-        });
-
-        binding.vibratorCounterBtnsSwitch.setOnCheckedChangeListener((v, isChecked) -> {
-            if (isChecked) {
-
+                Animation animation = new AlphaAnimation(0, 1);
+                binding.toolbarBtnsCheckVibrateLayoutRight.startAnimation(animation);
+                binding.toolbarBtnsCheckVibrateLayoutLeft.startAnimation(animation);
+                binding.toolbarBtnsCheckVibrateLayoutRight.setVisibility(View.VISIBLE);
+                binding.toolbarBtnsCheckVibrateLayoutLeft.setVisibility(View.VISIBLE);
+            } else {
+                binding.toolbarBtnsCheckVibrateLayoutRight.setVisibility(View.GONE);
+                binding.toolbarBtnsCheckVibrateLayoutLeft.setVisibility(View.GONE);
             }
         });
 
@@ -196,50 +267,166 @@ public class SettingsFragment extends Fragment {
             }
         });
 
+        // поочередное открытие и закрытие
+        binding.clickSwipeBtn.setOnClickListener(v -> {
+            if (binding.clickSwipeGroup.getVisibility() == View.GONE) {
+                binding.clickSwipeGroup.setVisibility(View.VISIBLE);
+            } else {
+                binding.clickSwipeGroup.setVisibility(View.GONE);
+                binding.valueClickInput.setVisibility(View.GONE);
+            }
+        });
 
-        return binding.getRoot();
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        binding.appThemeRadioGroup.check(SharedPreferencesUtils.getInteger(requireContext(), "checkedButton", R.id.setFollowSystemTheme));
-        binding.appThemeRadioGroup.setOnCheckedChangeListener((group, checkedId) -> {
+        binding.clickSwipeGroup.setOnCheckedChangeListener((group, checkedId) -> {
             switch (checkedId) {
-                case R.id.setFollowSystemTheme:
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
-                    SharedPreferencesUtils.saveInteger(requireContext(), "checkedButton", R.id.setFollowSystemTheme);
-                    SharedPreferencesUtils.saveInteger(requireContext(), "nightMode", 1);
-                    requireActivity().recreate();
+                case R.id.plusClickSwipeGroup:
+                    binding.valueClickInput.setVisibility(View.VISIBLE);
                     break;
-                case R.id.setLightTheme:
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    SharedPreferencesUtils.saveInteger(requireContext(), "checkedButton", R.id.setLightTheme);
-                    SharedPreferencesUtils.saveInteger(requireContext(), "nightMode", 2);
-                    requireActivity().recreate();
+                case R.id.minusClickSwipeGroup:
+                    binding.valueClickInput.setVisibility(View.VISIBLE);
                     break;
-                case R.id.setNightTheme:
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    SharedPreferencesUtils.saveInteger(requireContext(), "checkedButton", R.id.setNightTheme);
-                    SharedPreferencesUtils.saveInteger(requireContext(), "nightMode", 3);
-                    requireActivity().recreate();
+                case R.id.resetClickSwipeGroup:
+                    binding.valueClickInput.setVisibility(View.VISIBLE);
                     break;
             }
         });
 
-
-        switchMaterial.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            DynamicColors.applyToActivitiesIfAvailable(getActivity().getApplication());
-            DynamicColors.applyToActivitiesIfAvailable(getActivity().getApplication(),
-                    R.style.Theme_Counters);
-            SharedPreferencesUtils.saveBoolean(requireContext(), "useDynamicColors", isChecked);
-            requireActivity().recreate();
+        binding.longClickSwipeBtn.setOnClickListener(v -> {
+            if (binding.longClickSwipeGroup.getVisibility() == View.GONE) {
+                binding.longClickSwipeGroup.setVisibility(View.VISIBLE);
+            } else {
+                binding.longClickSwipeGroup.setVisibility(View.GONE);
+                binding.valueLongClickInput.setVisibility(View.GONE);
+            }
         });
 
-        // поочередное открытие и закрытие
-        binding.clickSwipeBtn.setOnClickListener(v -> {
-            binding.clickSwipeGroup.setVisibility(View.VISIBLE);
+        binding.longClickSwipeGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            switch (checkedId) {
+                case R.id.pluslongClickSwipeGroup:
+                    binding.valueLongClickInput.setVisibility(View.VISIBLE);
+                    break;
+                case R.id.minuslongClickSwipeGroup:
+                    binding.valueLongClickInput.setVisibility(View.VISIBLE);
+                    break;
+                case R.id.resetlongClickSwipeGroup:
+                    binding.valueLongClickInput.setVisibility(View.VISIBLE);
+                    break;
+            }
+        });
+
+        binding.doubleClickSwipeBtn.setOnClickListener(v -> {
+            if (binding.doubleClickSwipeGroup.getVisibility() == View.GONE) {
+                binding.doubleClickSwipeGroup.setVisibility(View.VISIBLE);
+            } else {
+                binding.doubleClickSwipeGroup.setVisibility(View.GONE);
+                binding.valueDoubleClickInput.setVisibility(View.GONE);
+            }
+        });
+
+        binding.doubleClickSwipeGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            switch (checkedId) {
+                case R.id.plusDoubleClickSwipeGroup:
+                    binding.valueDoubleClickInput.setVisibility(View.VISIBLE);
+                    break;
+                case R.id.minusDoubleClickSwipeGroup:
+                    binding.valueDoubleClickInput.setVisibility(View.VISIBLE);
+                    break;
+                case R.id.resetDoubleClickSwipeGroup:
+                    binding.valueDoubleClickInput.setVisibility(View.VISIBLE);
+                    break;
+            }
+        });
+
+        binding.swipeTopBtn.setOnClickListener(v -> {
+            if (binding.swipeTopGroup.getVisibility() == View.GONE) {
+                binding.swipeTopGroup.setVisibility(View.VISIBLE);
+            } else {
+                binding.swipeTopGroup.setVisibility(View.GONE);
+                binding.valueSwipeTopInput.setVisibility(View.GONE);
+            }
+        });
+
+        binding.swipeTopGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            switch (checkedId) {
+                case R.id.plusSwipeTopGroup:
+                    binding.valueSwipeTopInput.setVisibility(View.VISIBLE);
+                    break;
+                case R.id.minusSwipeTopGroup:
+                    binding.valueSwipeTopInput.setVisibility(View.VISIBLE);
+                    break;
+                case R.id.resetSwipeTopGroup:
+                    binding.valueSwipeTopInput.setVisibility(View.VISIBLE);
+                    break;
+            }
+        });
+
+        binding.swipeDownBtn.setOnClickListener(v -> {
+            if (binding.swipeDownGroup.getVisibility() == View.GONE) {
+                binding.swipeDownGroup.setVisibility(View.VISIBLE);
+            } else {
+                binding.swipeDownGroup.setVisibility(View.GONE);
+                binding.valueSwipeDownInput.setVisibility(View.GONE);
+            }
+        });
+
+        binding.swipeDownGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            switch (checkedId) {
+                case R.id.plusSwipeDownGroup:
+                    binding.valueSwipeDownInput.setVisibility(View.VISIBLE);
+                    break;
+                case R.id.minusSwipeDownGroup:
+                    binding.valueSwipeDownInput.setVisibility(View.VISIBLE);
+                    break;
+                case R.id.resetSwipeDownGroup:
+                    binding.valueSwipeDownInput.setVisibility(View.VISIBLE);
+                    break;
+            }
+        });
+
+        binding.swipeRightBtn.setOnClickListener(v -> {
+            if (binding.swipeRightGroup.getVisibility() == View.GONE) {
+                binding.swipeRightGroup.setVisibility(View.VISIBLE);
+            } else {
+                binding.swipeRightGroup.setVisibility(View.GONE);
+                binding.valueSwipeRightInput.setVisibility(View.GONE);
+            }
+        });
+
+        binding.swipeRightGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            switch (checkedId) {
+                case R.id.plusSwipeRightGroup:
+                    binding.valueSwipeRightInput.setVisibility(View.VISIBLE);
+                    break;
+                case R.id.minusSwipeRightGroup:
+                    binding.valueSwipeRightInput.setVisibility(View.VISIBLE);
+                    break;
+                case R.id.resetSwipeRightGroup:
+                    binding.valueSwipeRightInput.setVisibility(View.VISIBLE);
+                    break;
+            }
+        });
+
+        binding.swipeLeftBtn.setOnClickListener(v -> {
+            if (binding.swipeLeftGroup.getVisibility() == View.GONE) {
+                binding.swipeLeftGroup.setVisibility(View.VISIBLE);
+            } else {
+                binding.swipeLeftGroup.setVisibility(View.GONE);
+                binding.valueSwipeLeftInput.setVisibility(View.GONE);
+            }
+        });
+
+        binding.swipeLeftGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            switch (checkedId) {
+                case R.id.plusSwipeLeftGroup:
+                    binding.valueSwipeLeftInput.setVisibility(View.VISIBLE);
+                    break;
+                case R.id.minusSwipeLeftGroup:
+                    binding.valueSwipeLeftInput.setVisibility(View.VISIBLE);
+                    break;
+                case R.id.resetSwipeLeftGroup:
+                    binding.valueSwipeLeftInput.setVisibility(View.VISIBLE);
+                    break;
+            }
         });
 
     }

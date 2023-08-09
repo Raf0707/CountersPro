@@ -84,6 +84,7 @@
                         </RadioGroup>
 
                         <com.google.android.material.switchmaterial.SwitchMaterial
+                            style="@style/Widget.Material3.CompoundButton.MaterialSwitch"
                             android:id="@+id/dynamicColorsSwitch"
                             android:enabled="true"
                             android:layout_width="match_parent"
@@ -125,6 +126,7 @@
                             android:textStyle="bold"/>
 
                         <com.google.android.material.switchmaterial.SwitchMaterial
+                            style="@style/Widget.Material3.CompoundButton.MaterialSwitch"
                             android:id="@+id/animationTransactionSwitch"
                             android:enabled="true"
                             android:layout_width="match_parent"
@@ -215,6 +217,7 @@
                             android:textStyle="bold"/>
 
                         <com.google.android.material.switchmaterial.SwitchMaterial
+                            style="@style/Widget.Material3.CompoundButton.MaterialSwitch"
                             android:id="@+id/vibratorBtnsSwitch"
                             android:enabled="true"
                             android:layout_marginTop="20dp"
@@ -223,6 +226,34 @@
                             android:paddingHorizontal="8dp"
                             android:text="Вибрация при нажатии"
                             android:textSize="18sp"/>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/clickVibratorLengthLayout"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginLeft="20dp">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/clickVibratorLength"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Длина вибрации в миллисекундах (от 50 до 200)"
+                            android:gravity="center"
+                            android:textSize="21sp"
+                            android:padding="10dp"
+                            android:textStyle="bold"/>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.slider.Slider
+                            android:id="@+id/clickVibrateSlider"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:valueFrom="50"
+                            android:valueTo="200" />
 
                         <RadioGroup
                             android:id="@+id/clickVibratorRadioGroup"
@@ -247,28 +278,130 @@
                         </RadioGroup>
 
                         <com.google.android.material.switchmaterial.SwitchMaterial
+                            style="@style/Widget.Material3.CompoundButton.MaterialSwitch"
                             android:id="@+id/vibratorCounterBtnsSwitch"
                             android:enabled="true"
                             android:layout_marginLeft="20dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingHorizontal="8dp"
-                            android:text="Вибрация на кнопки счетчика"
+                            android:text="Вибрация на кнопки счетчика \n (+, -, reset)"
                             android:textSize="18sp"/>
 
+                        <LinearLayout
+                            android:id="@+id/counterBtnsCheckVibrateLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.checkbox.MaterialCheckBox
+                                android:id="@+id/plusCheck"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="40dp"
+                                style="@style/Widget.MaterialComponents.CompoundButton.CheckBox"
+                                android:text="+"/>
+
+                            <com.google.android.material.checkbox.MaterialCheckBox
+                                android:id="@+id/minusCheck"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="40dp"
+                                style="@style/Widget.MaterialComponents.CompoundButton.CheckBox"
+                                android:text="-"/>
+
+                            <com.google.android.material.checkbox.MaterialCheckBox
+                                android:id="@+id/resetCheck"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="40dp"
+                                style="@style/Widget.MaterialComponents.CompoundButton.CheckBox"
+                                android:text="reset"/>
+
+                        </LinearLayout>
+
                         <com.google.android.material.switchmaterial.SwitchMaterial
+                            style="@style/Widget.Material3.CompoundButton.MaterialSwitch"
                             android:id="@+id/vibratorToolBarBtnSwitch"
                             android:enabled="true"
+                            android:layout_marginTop="10dp"
                             android:layout_marginLeft="20dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingHorizontal="8dp"
-                            android:text="Вибрация на кнопки управления"
+                            android:text="Вибрация на кнопки управления \n (настройки, туториал, сохранение и изменение данных, удаление счетчика и переход в список всех счетчиков)"
                             android:textSize="18sp"/>
+
+                        <LinearLayout
+                            android:id="@+id/toolbarBtnsCheckVibrateLayoutRight"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.checkbox.MaterialCheckBox
+                                android:id="@+id/settingsCheck"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="40dp"
+                                style="@style/Widget.MaterialComponents.CompoundButton.CheckBox"
+                                android:text="settings"/>
+
+                            <com.google.android.material.checkbox.MaterialCheckBox
+                                android:id="@+id/tutorialCheck"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="40dp"
+                                style="@style/Widget.MaterialComponents.CompoundButton.CheckBox"
+                                android:text="tutorial"/>
+
+                            <com.google.android.material.checkbox.MaterialCheckBox
+                                android:id="@+id/saveCheck"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="40dp"
+                                style="@style/Widget.MaterialComponents.CompoundButton.CheckBox"
+                                android:text="save"/>
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/toolbarBtnsCheckVibrateLayoutLeft"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.checkbox.MaterialCheckBox
+                                android:id="@+id/editCheck"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="40dp"
+                                style="@style/Widget.MaterialComponents.CompoundButton.CheckBox"
+                                android:text="edit"/>
+
+                            <com.google.android.material.checkbox.MaterialCheckBox
+                                android:id="@+id/deleteCheck"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="40dp"
+                                style="@style/Widget.MaterialComponents.CompoundButton.CheckBox"
+                                android:text="delete"/>
+
+                            <com.google.android.material.checkbox.MaterialCheckBox
+                                android:id="@+id/listCheck"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="40dp"
+                                style="@style/Widget.MaterialComponents.CompoundButton.CheckBox"
+                                android:text="list"/>
+
+
+                        </LinearLayout>
 
 
                         <com.google.android.material.switchmaterial.SwitchMaterial
-                            android:id="@+id/vibratorEndSwitch"
+                            style="@style/Widget.Material3.CompoundButton.MaterialSwitch"
+                            android:id="@+id/clickVibratorEndSwitch"
                             android:enabled="true"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -278,7 +411,36 @@
                             android:text="Вибрация при завершении цели"
                             android:textSize="18sp"/>
 
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/endClickVibratorLengthLayout"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginLeft="20dp">
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/endClickVibratorLength"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Длина вибрации в миллисекундах (от 500 до 1000)"
+                                android:gravity="center"
+                                android:textSize="21sp"
+                                android:padding="10dp"
+                                android:textStyle="bold"/>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.slider.Slider
+                            android:id="@+id/endClickVibrateSlider"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:valueFrom="500"
+                            android:valueTo="1000" />
+
                         <com.google.android.material.switchmaterial.SwitchMaterial
+                            style="@style/Widget.Material3.CompoundButton.MaterialSwitch"
                             android:id="@+id/clickListenerSwitch"
                             android:enabled="true"
                             android:layout_marginTop="20dp"
@@ -393,6 +555,7 @@
                         </com.google.android.material.button.MaterialButton>
 
                         <com.google.android.material.switchmaterial.SwitchMaterial
+                            style="@style/Widget.Material3.CompoundButton.MaterialSwitch"
                             android:id="@+id/longPressSwitch"
                             android:enabled="true"
                             android:layout_width="match_parent"
@@ -440,7 +603,6 @@
                                 android:layout_height="wrap_content"
                                 android:text="Долгий клик"
                                 android:layout_marginTop="20dp"
-                                android:layout_marginLeft="20dp"
                                 android:padding="10dp"
                                 android:gravity="center"
                                 android:textSize="21sp"
@@ -561,8 +723,7 @@
                             android:id="@+id/textViewSwipeLayout"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp">
+                            android:layout_height="wrap_content">
 
                             <com.google.android.material.textview.MaterialTextView
                                 android:id="@+id/textViewSwipe"
@@ -1066,6 +1227,217 @@
 
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="16dp"
+                    app:cardUseCompatPadding="true"
+                    android:paddingBottom="10dp"
+                    style="@style/Widget.Material3.CardView.Elevated">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/textViewSwipeVibratorLayout"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/textViewSwipeVibrator"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Настройки вибрации свайпов"
+                                android:gravity="center"
+                                android:textSize="21sp"
+                                android:padding="10dp"
+                                android:textStyle="bold"/>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            style="@style/Widget.Material3.CompoundButton.MaterialSwitch"
+                            android:id="@+id/swipeVibrationSwitch"
+                            android:enabled="true"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingHorizontal="8dp"
+                            android:text="Вибрация свайпов"
+                            android:textSize="21sp"/>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/swipeVibratorLengthLayout"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginLeft="20dp">
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/swipeVibratorLength"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Длина вибрации в миллисекундах (от 50 до 200)"
+                                android:gravity="center"
+                                android:textSize="21sp"
+                                android:padding="10dp"
+                                android:textStyle="bold"/>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.slider.Slider
+                                android:id="@+id/swipeVibratorSlider"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:valueFrom="50"
+                                android:valueTo="200" />
+
+                            <RadioGroup
+                                android:id="@+id/swipeVibratorRadioGroup"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:paddingLeft="20dp">
+
+                                <com.google.android.material.radiobutton.MaterialRadioButton
+                                    android:id="@+id/fullSwipeVibration"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Вибрация на все свайпы"
+                                    android:textSize="18sp"/>
+
+                                <com.google.android.material.radiobutton.MaterialRadioButton
+                                    android:id="@+id/partSwipeVibration"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Частичная вибрация"
+                                    android:textSize="18sp"/>
+
+                            </RadioGroup>
+
+                            <LinearLayout
+                                android:id="@+id/swipeCheckVibrateLayout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:orientation="vertical">
+
+                                <com.google.android.material.checkbox.MaterialCheckBox
+                                    android:id="@+id/clickVibrateCheck"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="40dp"
+                                    style="@style/Widget.MaterialComponents.CompoundButton.CheckBox"
+                                    android:text="click"/>
+
+                                <com.google.android.material.checkbox.MaterialCheckBox
+                                    android:id="@+id/longClickVibrateCheck"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="40dp"
+                                    style="@style/Widget.MaterialComponents.CompoundButton.CheckBox"
+                                    android:text="long click"/>
+
+                                <com.google.android.material.checkbox.MaterialCheckBox
+                                    android:id="@+id/doubleClickVibrateCheck"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="40dp"
+                                    style="@style/Widget.MaterialComponents.CompoundButton.CheckBox"
+                                    android:text="double click"/>
+
+                                <com.google.android.material.checkbox.MaterialCheckBox
+                                    android:id="@+id/swipeTopVibrateCheck"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="40dp"
+                                    style="@style/Widget.MaterialComponents.CompoundButton.CheckBox"
+                                    android:text="swipe top"/>
+
+                                <com.google.android.material.checkbox.MaterialCheckBox
+                                    android:id="@+id/swipeDownVibrateCheck"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="40dp"
+                                    style="@style/Widget.MaterialComponents.CompoundButton.CheckBox"
+                                    android:text="swipe down"/>
+
+                                <com.google.android.material.checkbox.MaterialCheckBox
+                                    android:id="@+id/swipeRightVibrateCheck"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="40dp"
+                                    style="@style/Widget.MaterialComponents.CompoundButton.CheckBox"
+                                    android:text="swipe right"/>
+
+                                <com.google.android.material.checkbox.MaterialCheckBox
+                                    android:id="@+id/swipeLeftVibrateCheck"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="40dp"
+                                    style="@style/Widget.MaterialComponents.CompoundButton.CheckBox"
+                                    android:text="swipe left"/>
+
+                            </LinearLayout>
+
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            style="@style/Widget.Material3.CompoundButton.MaterialSwitch"
+                            android:id="@+id/swipeVibratorEndSwitch"
+                            android:enabled="true"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingHorizontal="8dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginLeft="20dp"
+                            android:text="Вибрация при завершении цели"
+                            android:textSize="18sp"/>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/endSwipeVibratorLengthLayout"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginLeft="20dp">
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/endSwipelickVibratorLength"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Длина вибрации в миллисекундах (от 500 до 1000)"
+                                android:gravity="center"
+                                android:textSize="21sp"
+                                android:padding="10dp"
+                                android:textStyle="bold"/>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.slider.Slider
+                            android:id="@+id/endSwipeClickVibrateSlider"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:valueFrom="500"
+                            android:valueTo="1000" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
             </LinearLayout>
 
             <LinearLayout
