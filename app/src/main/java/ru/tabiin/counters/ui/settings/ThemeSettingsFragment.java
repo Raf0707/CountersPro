@@ -61,9 +61,9 @@ public class ThemeSettingsFragment extends Fragment {
         });
 
         switchMaterial.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            DynamicColors.applyToActivitiesIfAvailable(requireActivity().getApplication());
-            DynamicColors.applyToActivitiesIfAvailable(requireActivity().getApplication(),
-                    R.style.Theme_Counters);
+            //DynamicColors.applyToActivitiesIfAvailable(requireActivity().getApplication());
+            /*DynamicColors.applyToActivitiesIfAvailable(requireActivity().getApplication(),
+                    R.style.Theme_Counters);*/
             SharedPreferencesUtils.saveBoolean(requireContext(), "useDynamicColors", isChecked);
             requireActivity().recreate();
         });
