@@ -25,7 +25,6 @@ import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.text.MessageFormat;
-import java.util.concurrent.TimeUnit;
 
 import ru.tabiin.counters.R;
 import ru.tabiin.counters.databinding.FragmentCounterBetaBinding;
@@ -37,7 +36,6 @@ import ru.tabiin.counters.ui.main.MainCircleFragment;
 import ru.tabiin.counters.ui.main.MainProgressFragment;
 import ru.tabiin.counters.ui.settings.SettingsFragment;
 import ru.tabiin.counters.ui.settings.TutorialFragment;
-import ru.tabiin.counters.util.CallBack;
 import ru.tabiin.counters.util.OnSwipeTouchListener;
 
 public class CounterBetaFragment extends Fragment {

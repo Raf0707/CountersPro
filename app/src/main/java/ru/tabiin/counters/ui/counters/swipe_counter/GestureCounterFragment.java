@@ -17,8 +17,6 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
-import java.util.concurrent.TimeUnit;
-
 import ru.tabiin.counters.R;
 import ru.tabiin.counters.databinding.FragmentGestureCounterBinding;
 import ru.tabiin.counters.domain.models.CounterItem;

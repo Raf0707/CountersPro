@@ -1,17 +1,13 @@
 package ru.tabiin.counters.ui.counters.counter_progress;
 
-import static android.content.Context.VIBRATOR_SERVICE;
-import static androidx.core.app.AppOpsManagerCompat.*;
 import static ru.tabiin.counters.util.UtilFragment.changeFragment;
 
 import android.animation.ObjectAnimator;
 import android.animation.TimeInterpolator;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,7 +24,6 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.text.MessageFormat;
-import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import ru.tabiin.counters.R;
@@ -40,6 +35,7 @@ import ru.tabiin.counters.domain.repository.CounterRepository;
 import ru.tabiin.counters.ui.counters.circle_progress.CounterBetaFragment;
 import ru.tabiin.counters.ui.counters.swipe_counter.GestureCounterFragment;
 import ru.tabiin.counters.ui.main.MainProgressFragment;
+import ru.tabiin.counters.ui.settings.MainSettingsFragment;
 import ru.tabiin.counters.ui.settings.SettingsFragment;
 import ru.tabiin.counters.ui.settings.TutorialFragment;
 import ru.tabiin.counters.util.CallBack;
@@ -209,7 +205,7 @@ public class CounterMainFragment extends Fragment {
 
         binding.counterBtnPlus.setOnClickListener(view -> {
 
-            vibrator.vibrate(60);
+            vibrator.vibrate(50);
 
             binding.counterTarget.setText(binding.counterTarget.getText().toString()
                     .replaceAll("[\\.\\-,\\s]+", ""));
@@ -378,20 +374,6 @@ public class CounterMainFragment extends Fragment {
 
         });
 
-        /*
-        binding.changeCounterModeBtn.setOnClickListener(v -> {
-            changeModeCounterAlert();
-
-
-            counterItem.title = binding.counterTitle.getText().toString();
-            counterItem.target = Integer.parseInt(binding.counterTarget.getText().toString());
-            counterItem.progress = binding.counterProgress.getProgress();
-            counterViewModel.update(counterItem);
-
-        });
-
-         */
-
 
         binding.counterResetBtn.setOnClickListener(view -> {
             if (currentCount != 0) resetCounterAlert();
@@ -407,7 +389,7 @@ public class CounterMainFragment extends Fragment {
         });
 
         binding.openSettingsBtn.setOnClickListener(view -> {
-            changeFragment(requireActivity(), new SettingsFragment(),
+            changeFragment(requireActivity(), new MainSettingsFragment(),
                     R.id.containerFragment, savedInstanceState
             );
 
@@ -465,59 +447,6 @@ public class CounterMainFragment extends Fragment {
                                 dialogInterface.cancel())
                 .show();
     }
-
-    /*
-    public void changeModeCounterAlert() {
-
-
-        Bundle bundle = new Bundle();
-        FragmentManager fragmentManager = getFragmentManager();
-        bundle.putString("title", binding.counterTitle.getText().toString());
-        bundle.putInt("target",
-                Integer.parseInt(binding.counterTarget.getText().toString()));
-        bundle.putInt("progress", currentCount);
-
-
-
-        counterItem.title = binding.counterTitle.getText().toString();
-        counterItem.target = Integer.parseInt(binding.counterTarget.getText().toString());
-        counterItem.progress = binding.counterProgress.getProgress();
-        counterItem.id = getId();
-        counterViewModel.update(counterItem);
-
-        final String[] counterModes = {"Linear counter", "Circle counter", "Swipe counter"};
-        new MaterialAlertDialogBuilder(requireContext(),
-                R.style.AlertDialogTheme)
-                .setTitle("Сменить режим счетчика")
-                //.setMessage("Выберете новый режим")
-                .setSingleChoiceItems(counterModes, 0, (dialogInterface, i) -> {
-                    selectMode = counterModes[i];
-                })
-                .setPositiveButton("Сменить", (dialogInterface, i) -> {
-                    if (selectMode == "Linear counter") {
-                        dialogInterface.cancel();
-                    } else if (selectMode == "Circle counter") {
-                        //cbf.setArguments(bundle);
-                        getParentFragmentManager().beginTransaction()
-                                .replace(R.id.containerFragment, cbf).commit();
-                        counterViewModel.update(counterItem);
-                    } else if (selectMode == "Swipe counter") {
-                        //gcf.setArguments(bundle);
-                        getParentFragmentManager().beginTransaction()
-                                .replace(R.id.containerFragment, gcf).commit();
-                        counterViewModel.update(counterItem);
-                    }
-                    Snackbar.make(requireView(), "Вы выбрали " + selectMode,
-                            BaseTransientBottomBar.LENGTH_SHORT).show();
-                })
-                .setNeutralButton("Отмена",
-                        (dialogInterface, i) ->
-                                dialogInterface.cancel())
-                .show();
-        counterViewModel.update(counterItem);
-    }
-
-     */
 
     public void removeCounterAlert() {
         new MaterialAlertDialogBuilder(requireContext(),
