@@ -37,28 +37,6 @@ public class ThemeSettingsFragment extends Fragment {
 
         switchMaterial = b.dynamicColorsSwitch;
         b.appThemeRadioGroup.check(SharedPreferencesUtils.getInteger(requireContext(), "checkedButton", R.id.setFollowSystemTheme));
-        /*b.appThemeRadioGroup.setOnCheckedChangeListener((group, checkedId) -> {
-            switch (checkedId) {
-                case R.id.setFollowSystemTheme:
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
-                    SharedPreferencesUtils.saveInteger(requireContext(), "checkedButton", R.id.setFollowSystemTheme);
-                    SharedPreferencesUtils.saveInteger(requireContext(), "nightMode", 1);
-                    requireActivity().recreate();
-                    break;
-                case R.id.setLightTheme:
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    SharedPreferencesUtils.saveInteger(requireContext(), "checkedButton", R.id.setLightTheme);
-                    SharedPreferencesUtils.saveInteger(requireContext(), "nightMode", 2);
-                    requireActivity().recreate();
-                    break;
-                case R.id.setNightTheme:
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    SharedPreferencesUtils.saveInteger(requireContext(), "checkedButton", R.id.setNightTheme);
-                    SharedPreferencesUtils.saveInteger(requireContext(), "nightMode", 3);
-                    requireActivity().recreate();
-                    break;
-            }
-        });*/
 
         b.appThemeRadioGroup.setOnCheckedChangeListener((group, checkedId) -> {
                     switch (checkedId) {
