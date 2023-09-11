@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,7 +71,7 @@ public class ThemeSettingsFragment extends Fragment {
                 requireActivity().recreate();
             });
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.d("DYNAMIC_COLORS", e.getMessage());
         }
 
     }
