@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
 
         App.instance.setNightMode();
         SplashScreen splashScreen = SplashScreen.installSplashScreen(this);
-        //supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
 
         if (SharedPreferencesUtils.getBoolean(this, "useDynamicColors"))
             DynamicColors.applyToActivityIfAvailable(this);

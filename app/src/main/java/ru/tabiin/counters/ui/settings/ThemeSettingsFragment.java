@@ -61,13 +61,17 @@ public class ThemeSettingsFragment extends Fragment {
                     }
                 });
 
-        switchMaterial.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            //DynamicColors.applyToActivitiesIfAvailable(requireActivity().getApplication());
-            /*DynamicColors.applyToActivitiesIfAvailable(requireActivity().getApplication(),
-                    R.style.Theme_Counters);*/
-            SharedPreferencesUtils.saveBoolean(requireContext(), "useDynamicColors", isChecked);
-            requireActivity().recreate();
-        });
+        try {
+            switchMaterial.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                //DynamicColors.applyToActivitiesIfAvailable(requireActivity().getApplication());
+                /*DynamicColors.applyToActivitiesIfAvailable(requireActivity().getApplication(),
+                        R.style.Theme_Counters);*/
+                SharedPreferencesUtils.saveBoolean(requireContext(), "useDynamicColors", isChecked);
+                requireActivity().recreate();
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 }
