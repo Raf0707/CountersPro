@@ -36,7 +36,6 @@ import ru.tabiin.counters.ui.counters.circle_progress.CounterBetaFragment;
 import ru.tabiin.counters.ui.counters.swipe_counter.GestureCounterFragment;
 import ru.tabiin.counters.ui.main.MainProgressFragment;
 import ru.tabiin.counters.ui.settings.MainSettingsFragment;
-import ru.tabiin.counters.ui.settings.SettingsFragment;
 import ru.tabiin.counters.ui.settings.TutorialFragment;
 import ru.tabiin.counters.util.CallBack;
 

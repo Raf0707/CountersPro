@@ -34,7 +34,7 @@ import ru.tabiin.counters.ui.counters.counter_progress.CounterMainFragment;
 import ru.tabiin.counters.ui.counters.counter_progress.CounterViewModel;
 import ru.tabiin.counters.ui.main.MainCircleFragment;
 import ru.tabiin.counters.ui.main.MainProgressFragment;
-import ru.tabiin.counters.ui.settings.SettingsFragment;
+import ru.tabiin.counters.ui.settings.MainSettingsFragment;
 import ru.tabiin.counters.ui.settings.TutorialFragment;
 import ru.tabiin.counters.util.OnSwipeTouchListener;
 
@@ -321,7 +321,7 @@ public class CounterBetaFragment extends Fragment {
 
         binding.openSettingsBtn.setOnClickListener(view -> {
             changeFragment(requireActivity(),
-                    new SettingsFragment(),
+                    new MainSettingsFragment(),
                     R.id.containerFragment,
                     savedInstanceState
             );

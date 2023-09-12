@@ -55,6 +55,8 @@
 
                     <com.google.android.material.slider.Slider
                         android:id="@+id/clickVibrateSlider"
+                        android:valueFrom="50"
+                        android:valueTo="150"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
 
@@ -205,6 +207,8 @@
 
                     <com.google.android.material.slider.Slider
                         android:id="@+id/endTargetVibrateSlider"
+                        android:valueFrom="500"
+                        android:valueTo="2000"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
 

@@ -71,7 +71,7 @@ public class ThemeSettingsFragment extends Fragment {
                 requireActivity().recreate();
             });
         } catch (Exception e) {
-            Log.d("DYNAMIC_COLORS", e.getMessage());
+            Log.d("DYNAMIC_COLORS", Objects.requireNonNull(e.getMessage()));
         }
 
     }

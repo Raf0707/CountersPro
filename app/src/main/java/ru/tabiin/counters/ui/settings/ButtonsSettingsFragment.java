@@ -35,6 +35,8 @@ public class ButtonsSettingsFragment extends Fragment {
         b.minusValLayout.setVisibility(View.GONE);
         b.resetValLayout.setVisibility(View.GONE);
         b.saveClickObserver.setVisibility(View.GONE);
+        b.clickVibrateSlider.setVisibility(View.GONE);
+        b.endTargetVibrateSlider.setVisibility(View.GONE);
 
         b.longPressRadioGroup.setVisibility(View.GONE);
 
@@ -58,8 +60,9 @@ public class ButtonsSettingsFragment extends Fragment {
 
                 b.clickVibratorRadioGroup.startAnimation(animation);
                 b.clickVibratorEndSwitch.startAnimation(animation);
+                b.clickVibrateSlider.startAnimation(animation);
 
-
+                b.clickVibrateSlider.setVisibility(View.VISIBLE);
                 b.clickVibratorRadioGroup.setVisibility(View.VISIBLE);
                 b.clickVibratorEndSwitch.setVisibility(View.VISIBLE);
 
@@ -101,6 +104,17 @@ public class ButtonsSettingsFragment extends Fragment {
             } else {
                 b.counterBtnsCheckVibrateLayout.setVisibility(View.GONE);
             }
+        });
+
+        b.clickVibratorEndSwitch.setOnCheckedChangeListener((v, isChecked) -> {
+            if (isChecked) {
+                Animation animation = new AlphaAnimation(0, 1);
+                b.counterBtnsCheckVibrateLayout.startAnimation(animation);
+                b.endTargetVibrateSlider.setVisibility(View.VISIBLE);
+            } else {
+                b.endTargetVibrateSlider.setVisibility(View.GONE);
+            }
+
         });
 
         b.vibratorToolBarBtnSwitch.setOnCheckedChangeListener((v, isChecked) -> {
