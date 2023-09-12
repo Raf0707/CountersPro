@@ -28,7 +28,7 @@ public class ThemeSettingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        b = FragmentThemeSettingsBinding.inflate(getLayoutInflater());
+        b = FragmentThemeSettingsBinding.inflate(inflater, container, false);
         return b.getRoot();
     }
 
@@ -62,17 +62,16 @@ public class ThemeSettingsFragment extends Fragment {
                     }
                 });
 
-        try {
-            switchMaterial.setOnCheckedChangeListener((buttonView, isChecked) -> {
-                //DynamicColors.applyToActivitiesIfAvailable(requireActivity().getApplication());
-                /*DynamicColors.applyToActivitiesIfAvailable(requireActivity().getApplication(),
-                        R.style.Theme_Counters);*/
-                SharedPreferencesUtils.saveBoolean(requireContext(), "useDynamicColors", isChecked);
-                requireActivity().recreate();
-            });
-        } catch (Exception e) {
-            Log.d("DYNAMIC_COLORS", Objects.requireNonNull(e.getMessage()));
-        }
+
+        b.dynamicColorsSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            /*DynamicColors.applyToActivitiesIfAvailable(requireActivity().getApplication());
+            DynamicColors.applyToActivitiesIfAvailable(requireActivity().getApplication(),
+                    R.style.Theme_Counters);*/
+            SharedPreferencesUtils.saveBoolean(requireContext(), "useDynamicColors", isChecked);
+            requireActivity().recreate();
+
+        });
+
 
     }
 }
