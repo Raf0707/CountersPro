@@ -68,12 +68,8 @@ public class ThemeSettingsFragment extends Fragment {
 
 
         b.dynamicColorsSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            /*DynamicColors.applyToActivitiesIfAvailable(requireActivity().getApplication());
-            DynamicColors.applyToActivitiesIfAvailable(requireActivity().getApplication(),
-                    R.style.Theme_Counters);*/
             SharedPreferencesUtils.saveBoolean(requireContext(), "useDynamicColors", isChecked);
             requireActivity().recreate();
-
         });
 
 
