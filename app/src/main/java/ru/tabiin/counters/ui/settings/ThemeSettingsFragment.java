@@ -29,6 +29,10 @@ public class ThemeSettingsFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         b = FragmentThemeSettingsBinding.inflate(inflater, container, false);
+        switchMaterial = (SwitchMaterial) b.dynamicColorsSwitch;
+        b.appThemeRadioGroup.check(SharedPreferencesUtils.getInteger(requireContext(), "checkedButton", R.id.setFollowSystemTheme));
+        b.dynamicColorsSwitch.setEnabled(DynamicColors.isDynamicColorAvailable());
+        switchMaterial.setChecked(SharedPreferencesUtils.getBoolean(requireContext(), "useDynamicColors"));
         return b.getRoot();
     }
 
