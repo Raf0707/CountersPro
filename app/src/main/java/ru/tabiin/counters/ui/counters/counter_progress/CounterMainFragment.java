@@ -375,6 +375,7 @@ public class CounterMainFragment extends Fragment {
 
 
         binding.counterResetBtn.setOnClickListener(view -> {
+            vibrator.vibrate(200);
             if (currentCount != 0) resetCounterAlert();
             /**
              * сделать сохранение
@@ -426,6 +427,7 @@ public class CounterMainFragment extends Fragment {
                 .setTitle("Reset")
                 .setMessage("Вы уверены, что хотите обновить счетчик?")
                 .setPositiveButton("Да", (dialogInterface, i) -> {
+                    vibrator.vibrate(200);
                     currentCount = 0;
                     binding.counterProgressTv.setText(new StringBuilder().append(0).append(" / ")
                                     .append(binding.counterTarget.getText().toString()).toString());
