@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.settings.OtherSettingsFragment">
+    tools:context=".ui.settings.OtherSettingsFragment"
+    android:orientation="vertical">
+
+
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -74,6 +78,28 @@
             </com.google.android.material.button.MaterialButton>
 
         </LinearLayout>
+
     </com.google.android.material.card.MaterialCardView>
 
-</FrameLayout>
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/clearCache"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="16dp"
+        app:cardUseCompatPadding="true"
+        android:paddingBottom="10dp"
+        style="@style/Widget.Material3.CardView.Elevated">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Очистить кэш"
+            android:gravity="center"
+            android:padding="15dp"
+            android:textSize="20sp">
+
+        </com.google.android.material.textview.MaterialTextView>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>
