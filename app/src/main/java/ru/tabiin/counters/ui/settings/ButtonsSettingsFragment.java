@@ -90,8 +90,6 @@ public class ButtonsSettingsFragment extends Fragment {
                     b.deleteBtnSetVib.setChecked(SharedPreferencesUtils.getInteger(requireContext(), "deleteBtnSetVib") == 1);
                     b.listBtnSetVib.setChecked(SharedPreferencesUtils.getInteger(requireContext(), "listBtnSetVib") == 1);
 
-                } else {
-
                 }
 
             } else if (b.fullVibration.isChecked()) {
@@ -495,7 +493,7 @@ public class ButtonsSettingsFragment extends Fragment {
                     b.minusValLongLayout.setVisibility(View.VISIBLE);
                     b.resetValLongLayout.setVisibility(View.VISIBLE);
                     b.saveLongClickObserver.setVisibility(View.VISIBLE);
-                } else {
+                } else if (b.oneLongClick.isChecked()) {
                     b.textViewLongClickLayout.setVisibility(View.GONE);
                     b.plusValLongLayout.setVisibility(View.GONE);
                     b.minusValLongLayout.setVisibility(View.GONE);
@@ -507,7 +505,7 @@ public class ButtonsSettingsFragment extends Fragment {
             }
 
             SharedPreferencesUtils.saveBoolean(requireContext(), "longPressSwitch", isChecked);
-            requireActivity().recreate();
+            //requireActivity().recreate();
         });
 
         b.longPressRadioGroup.check(SharedPreferencesUtils.getInteger(requireContext(), "longclick"));
