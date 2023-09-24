@@ -66,6 +66,9 @@ public class ButtonsSettingsFragment extends Fragment {
 
         b.longPressRadioGroup.setVisibility(View.GONE);
 
+        b.vibratorLongBtnsSwitch.setVisibility(View.GONE);
+        b.clickLongVibrateSlider.setVisibility(View.GONE);
+
         b.textViewLongClickLayout.setVisibility(View.GONE);
         b.plusValLongLayout.setVisibility(View.GONE);
         b.minusValLongLayout.setVisibility(View.GONE);
@@ -171,19 +174,23 @@ public class ButtonsSettingsFragment extends Fragment {
         b.longPressSwitch.setChecked(SharedPreferencesUtils.getBoolean(requireContext(), "longPressSwitch"));
 
         if (b.longPressSwitch.isChecked()) {
+            b.vibratorLongBtnsSwitch.setVisibility(View.VISIBLE);
+            b.vibratorLongBtnsSwitch.setChecked(SharedPreferencesUtils.getBoolean(requireContext(), "vibratorLongBtnsSwitch"));
+            if (b.vibratorLongBtnsSwitch.isChecked()) {
+                b.clickLongVibrateSlider.setVisibility(View.VISIBLE);
+                b.clickLongVibrateSlider.setValue(SharedPreferencesUtils.getInteger(requireContext(), "clickLongVibrateSlider"));
+            }
             b.longPressRadioGroup.setVisibility(View.VISIBLE);
-            if (b.regularLongClick.isChecked()) {
+            if (SharedPreferencesUtils.getBoolean(requireContext(), "regularLongClick")) {
                 b.textViewLongClickLayout.setVisibility(View.VISIBLE);
                 b.plusValLongLayout.setVisibility(View.VISIBLE);
                 b.minusValLongLayout.setVisibility(View.VISIBLE);
                 b.resetValLongLayout.setVisibility(View.VISIBLE);
                 b.saveLongClickObserver.setVisibility(View.VISIBLE);
-            } else {
-                b.textViewLongClickLayout.setVisibility(View.GONE);
-                b.plusValLongLayout.setVisibility(View.GONE);
-                b.minusValLongLayout.setVisibility(View.GONE);
-                b.resetValLongLayout.setVisibility(View.GONE);
-                b.saveLongClickObserver.setVisibility(View.GONE);
+
+                b.plusValueLongClickInput.setVisibility(View.VISIBLE);
+                b.minusValueLongClickInput.setVisibility(View.VISIBLE);
+                b.resetValueLongClickInput.setVisibility(View.VISIBLE);
             }
         } else {
             b.longPressRadioGroup.setVisibility(View.GONE);
@@ -191,7 +198,12 @@ public class ButtonsSettingsFragment extends Fragment {
             b.plusValLongLayout.setVisibility(View.GONE);
             b.minusValLongLayout.setVisibility(View.GONE);
             b.resetValLongLayout.setVisibility(View.GONE);
+            b.plusValueLongClickInput.setVisibility(View.GONE);
+            b.minusValueLongClickInput.setVisibility(View.GONE);
+            b.resetValueLongClickInput.setVisibility(View.GONE);
             b.saveLongClickObserver.setVisibility(View.GONE);
+            b.vibratorLongBtnsSwitch.setVisibility(View.GONE);
+            b.clickLongVibrateSlider.setVisibility(View.GONE);
         }
 
         if (b.regularLongClick.isChecked()) {
@@ -566,6 +578,11 @@ public class ButtonsSettingsFragment extends Fragment {
                 AlphaAnimation animation = new AlphaAnimation(0, 1);
                 animation.setDuration(1000);
 
+                b.vibratorLongBtnsSwitch.setVisibility(View.VISIBLE);
+                if (b.vibratorLongBtnsSwitch.isChecked()) {
+                    b.clickLongVibrateSlider.setVisibility(View.VISIBLE);
+                }
+
                 b.longPressRadioGroup.startAnimation(animation);
                 b.longPressRadioGroup.setVisibility(View.VISIBLE);
                 if (b.regularLongClick.isChecked()) {
@@ -573,12 +590,18 @@ public class ButtonsSettingsFragment extends Fragment {
                     b.plusValLongLayout.setVisibility(View.VISIBLE);
                     b.minusValLongLayout.setVisibility(View.VISIBLE);
                     b.resetValLongLayout.setVisibility(View.VISIBLE);
+                    b.plusValueLongClickInput.setVisibility(View.VISIBLE);
+                    b.minusValueLongClickInput.setVisibility(View.VISIBLE);
+                    b.resetValueLongClickInput.setVisibility(View.VISIBLE);
                     b.saveLongClickObserver.setVisibility(View.VISIBLE);
                 } else if (b.oneLongClick.isChecked()) {
                     b.textViewLongClickLayout.setVisibility(View.GONE);
                     b.plusValLongLayout.setVisibility(View.GONE);
                     b.minusValLongLayout.setVisibility(View.GONE);
                     b.resetValLongLayout.setVisibility(View.GONE);
+                    b.plusValueLongClickInput.setVisibility(View.GONE);
+                    b.minusValueLongClickInput.setVisibility(View.GONE);
+                    b.resetValueLongClickInput.setVisibility(View.GONE);
                     b.saveLongClickObserver.setVisibility(View.GONE);
                 }
             } else {
@@ -588,11 +611,41 @@ public class ButtonsSettingsFragment extends Fragment {
                 b.minusValLongLayout.setVisibility(View.GONE);
                 b.resetValLongLayout.setVisibility(View.GONE);
                 b.saveLongClickObserver.setVisibility(View.GONE);
+                b.vibratorLongBtnsSwitch.setVisibility(View.GONE);
+                b.clickLongVibrateSlider.setVisibility(View.GONE);
+                b.plusValueLongClickInput.setVisibility(View.GONE);
+                b.minusValueLongClickInput.setVisibility(View.GONE);
+                b.resetValueLongClickInput.setVisibility(View.GONE);
             }
 
             SharedPreferencesUtils.saveBoolean(requireContext(), "longPressSwitch", isChecked);
             //requireActivity().recreate();
         });
+
+        b.vibratorLongBtnsSwitch.setOnCheckedChangeListener((v, isChecked) -> {
+
+            if (b.vibratorLongBtnsSwitch.isChecked()) {
+                b.clickLongVibrateSlider.setVisibility(View.VISIBLE);
+            } else {
+                b.clickLongVibrateSlider.setVisibility(View.GONE);
+            }
+
+            SharedPreferencesUtils.saveBoolean(requireContext(), "vibratorLongBtnsSwitch", isChecked);
+        });
+
+        b.clickLongVibrateSlider.addOnSliderTouchListener(new Slider.OnSliderTouchListener() {
+            @Override
+            public void onStartTrackingTouch(@NonNull Slider slider) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(@NonNull Slider slider) {
+                SharedPreferencesUtils.saveInteger(requireContext(), "clickLongVibrateSlider", (int) slider.getValue());
+                requireActivity().recreate();
+            }
+        });
+
 
         b.longPressRadioGroup.check(SharedPreferencesUtils.getInteger(requireContext(), "longclick"));
         b.longPressRadioGroup.setOnCheckedChangeListener((group, checkedId) -> {
@@ -650,6 +703,7 @@ public class ButtonsSettingsFragment extends Fragment {
             if (b.plusValueLongClickInput.getText() == null || b.plusValueLongClickInput.getText().toString() == "") {
                 b.plusValueLongClickInput.setText("1");
             }
+
             SharedPreferencesUtils.saveInteger(requireContext(), "plusValueLongClickInput",
                     Integer.parseInt(Objects.requireNonNull(b.plusValueLongClickInput.getText()).toString()));
 

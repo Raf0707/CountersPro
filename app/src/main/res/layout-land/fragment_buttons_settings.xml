@@ -338,6 +338,24 @@
                         android:text="Обработчик долгих кликов"
                         android:textSize="18sp"/>
 
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        style="@style/Widget.Material3.CompoundButton.MaterialSwitch"
+                        android:id="@+id/vibratorLongBtnsSwitch"
+                        android:enabled="true"
+                        android:layout_marginTop="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="8dp"
+                        android:text="Вибрация при долгом нажатии"
+                        android:textSize="18sp"/>
+
+                    <com.google.android.material.slider.Slider
+                        android:id="@+id/clickLongVibrateSlider"
+                        android:valueFrom="200"
+                        android:valueTo="400"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
                     <RadioGroup
                         android:id="@+id/longPressRadioGroup"
                         android:layout_width="match_parent"
