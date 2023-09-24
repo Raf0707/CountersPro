@@ -27,6 +27,23 @@ public class ButtonsSettingsFragment extends Fragment {
     FragmentButtonsSettingsBinding b;
     String vibRadioFullOrPart;
     String longclickOneOrRegular;
+
+    /**
+     *
+     * @param inflater The LayoutInflater object that can be used to inflate
+     * any views in the fragment,
+     * @param container If non-null, this is the parent view that the fragment's
+     * UI should be attached to.  The fragment should not add the view itself,
+     * but this can be used to generate the LayoutParams of the view.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed
+     * from a previous saved state as given here.
+     *
+     * @return binding.getRoot()
+     */
+
+    /*
+    сделать Слайдер для вибрации при долгих нажатиях
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -177,6 +194,14 @@ public class ButtonsSettingsFragment extends Fragment {
             b.saveLongClickObserver.setVisibility(View.GONE);
         }
 
+        if (b.regularLongClick.isChecked()) {
+            b.textViewLongClickLayout.setVisibility(View.VISIBLE);
+            b.plusValLongLayout.setVisibility(View.VISIBLE);
+            b.minusValLongLayout.setVisibility(View.VISIBLE);
+            b.resetValLongLayout.setVisibility(View.VISIBLE);
+            b.saveLongClickObserver.setVisibility(View.VISIBLE);
+        }
+
         return b.getRoot();
     }
 
@@ -196,8 +221,31 @@ public class ButtonsSettingsFragment extends Fragment {
                 b.clickVibrateSlider.setVisibility(View.VISIBLE);
                 b.clickVibrateSlider.setValue(SharedPreferencesUtils.getInteger(requireContext(), "clickVibrateSlider", 50));
                 b.clickVibratorRadioGroup.setVisibility(View.VISIBLE);
+
+                b.vibratorCounterBtnsSwitch.setVisibility(View.VISIBLE);
+                b.vibratorToolBarBtnSwitch.setVisibility(View.VISIBLE);
+
+                if (b.vibratorCounterBtnsSwitch.isChecked()) {
+                    b.plusBtnSetVib.setVisibility(View.VISIBLE);
+                    b.minusBtnSetVib.setVisibility(View.VISIBLE);
+                    b.resetBtnSetVib.setVisibility(View.VISIBLE);
+                }
+
+                if (b.vibratorToolBarBtnSwitch.isChecked()) {
+                    b.settingsBtnSetVib.setVisibility(View.VISIBLE);
+                    b.tutorialBtnSetVib.setVisibility(View.VISIBLE);
+                    b.saveBtnSetVib.setVisibility(View.VISIBLE);
+                    b.editBtnSetVib.setVisibility(View.VISIBLE);
+                    b.deleteBtnSetVib.setVisibility(View.VISIBLE);
+                    b.listBtnSetVib.setVisibility(View.VISIBLE);
+                }
                 b.clickVibratorEndSwitch.setVisibility(View.VISIBLE);
                 b.clickVibratorEndSwitch.setChecked(SharedPreferencesUtils.getBoolean(requireContext(), "clickVibratorEndSwitch"));
+
+                if (b.clickVibratorEndSwitch.isChecked()) {
+                    b.endTargetVibrateSlider.setVisibility(View.VISIBLE);
+                    b.endTargetVibrateSlider.setValue(SharedPreferencesUtils.getInteger(requireContext(), "endTargetVibrateSlider", 500));
+                }
 
             } else {
                 b.clickVibratorRadioGroup.setVisibility(View.GONE);
@@ -206,6 +254,16 @@ public class ButtonsSettingsFragment extends Fragment {
                 b.clickVibratorEndSwitch.setVisibility(View.GONE);
                 b.clickVibrateSlider.setVisibility(View.GONE);
                 b.endTargetVibrateSlider.setVisibility(View.GONE);
+
+                b.plusBtnSetVib.setVisibility(View.GONE);
+                b.minusBtnSetVib.setVisibility(View.GONE);
+                b.resetBtnSetVib.setVisibility(View.GONE);
+                b.settingsBtnSetVib.setVisibility(View.GONE);
+                b.tutorialBtnSetVib.setVisibility(View.GONE);
+                b.saveBtnSetVib.setVisibility(View.GONE);
+                b.editBtnSetVib.setVisibility(View.GONE);
+                b.deleteBtnSetVib.setVisibility(View.GONE);
+                b.listBtnSetVib.setVisibility(View.GONE);
             }
 
             SharedPreferencesUtils.saveBoolean(requireContext(), "vibratorBtnsSwitch", isChecked);
@@ -262,6 +320,13 @@ public class ButtonsSettingsFragment extends Fragment {
                         b.toolbarBtnsCheckVibrateLayoutRight.setVisibility(View.VISIBLE);
                         b.toolbarBtnsCheckVibrateLayoutLeft.setVisibility(View.VISIBLE);
 
+                        b.settingsBtnSetVib.setVisibility(View.VISIBLE);
+                        b.tutorialBtnSetVib.setVisibility(View.VISIBLE);
+                        b.saveBtnSetVib.setVisibility(View.VISIBLE);
+                        b.editBtnSetVib.setVisibility(View.VISIBLE);
+                        b.deleteBtnSetVib.setVisibility(View.VISIBLE);
+                        b.listBtnSetVib.setVisibility(View.VISIBLE);
+
                         b.settingsBtnSetVib.setChecked(SharedPreferencesUtils.getInteger(requireContext(), "settingsBtnSetVib") == 1);
                         b.tutorialBtnSetVib.setChecked(SharedPreferencesUtils.getInteger(requireContext(), "tutorialBtnSetVib") == 1);
                         b.saveBtnSetVib.setChecked(SharedPreferencesUtils.getInteger(requireContext(), "saveBtnSetVib") == 1);
@@ -271,26 +336,42 @@ public class ButtonsSettingsFragment extends Fragment {
                         b.listBtnSetVib.setChecked(SharedPreferencesUtils.getInteger(requireContext(), "listBtnSetVib") == 1);
 
                     } else {
-
+                        b.toolbarBtnsCheckVibrateLayoutRight.setVisibility(View.GONE);
+                        b.toolbarBtnsCheckVibrateLayoutLeft.setVisibility(View.GONE);
+                        b.settingsBtnSetVib.setVisibility(View.GONE);
+                        b.tutorialBtnSetVib.setVisibility(View.GONE);
+                        b.saveBtnSetVib.setVisibility(View.GONE);
+                        b.editBtnSetVib.setVisibility(View.GONE);
+                        b.deleteBtnSetVib.setVisibility(View.GONE);
+                        b.listBtnSetVib.setVisibility(View.GONE);
                     }
 
                     b.vibratorCounterBtnsSwitch.setVisibility(View.VISIBLE);
                     b.vibratorCounterBtnsSwitch.setChecked(SharedPreferencesUtils.getBoolean(requireContext(), "vibratorCounterBtnsSwitch"));
                     if (b.vibratorCounterBtnsSwitch.isChecked()) {
                         b.counterBtnsCheckVibrateLayout.setVisibility(View.VISIBLE);
+
+                        b.plusBtnSetVib.setVisibility(View.VISIBLE);
+                        b.minusBtnSetVib.setVisibility(View.VISIBLE);
+                        b.resetBtnSetVib.setVisibility(View.VISIBLE);
+
                         b.plusBtnSetVib.setChecked(SharedPreferencesUtils.getInteger(requireContext(), "plusBtnSetVib") == 1);
                         b.minusBtnSetVib.setChecked(SharedPreferencesUtils.getInteger(requireContext(), "minusBtnSetVib") == 1);
                         b.resetBtnSetVib.setChecked(SharedPreferencesUtils.getInteger(requireContext(), "resetBtnSetVib") == 1);
-                        SharedPreferencesUtils.saveBoolean(requireContext(), "vibratorCounterBtnsSwitch", b.vibratorCounterBtnsSwitch.isChecked());
                     } else {
-
+                        b.counterBtnsCheckVibrateLayout.setVisibility(View.GONE);
+                        b.plusBtnSetVib.setVisibility(View.GONE);
+                        b.minusBtnSetVib.setVisibility(View.GONE);
+                        b.resetBtnSetVib.setVisibility(View.GONE);
                     }
+
+                    SharedPreferencesUtils.saveBoolean(requireContext(), "vibratorCounterBtnsSwitch", b.vibratorCounterBtnsSwitch.isChecked());
 
                     vibRadioFullOrPart = "partVib";
                     SharedPreferencesUtils.saveInteger(requireContext(), "checkVib", 1);
                     SharedPreferencesUtils.saveInteger(requireContext(), "vibration", R.id.partVibration);
                     //requireActivity().recreate();
-                    break;
+                    //break;
             }
 
         });
@@ -311,7 +392,7 @@ public class ButtonsSettingsFragment extends Fragment {
             }
 
             SharedPreferencesUtils.saveBoolean(requireContext(), "vibratorCounterBtnsSwitch", isChecked);
-            requireActivity().recreate();
+            //requireActivity().recreate();
         });
 
         b.plusBtnSetVib.addOnCheckedStateChangedListener((checkBox, state) -> {
@@ -351,7 +432,7 @@ public class ButtonsSettingsFragment extends Fragment {
             }
 
             SharedPreferencesUtils.saveBoolean(requireContext(), "vibratorToolBarBtnSwitch", isChecked);
-            requireActivity().recreate();
+            //requireActivity().recreate();
         });
 
         b.settingsBtnSetVib.addOnCheckedStateChangedListener((checkBox, state) -> {
@@ -502,6 +583,11 @@ public class ButtonsSettingsFragment extends Fragment {
                 }
             } else {
                 b.longPressRadioGroup.setVisibility(View.GONE);
+                b.textViewLongClickLayout.setVisibility(View.GONE);
+                b.plusValLongLayout.setVisibility(View.GONE);
+                b.minusValLongLayout.setVisibility(View.GONE);
+                b.resetValLongLayout.setVisibility(View.GONE);
+                b.saveLongClickObserver.setVisibility(View.GONE);
             }
 
             SharedPreferencesUtils.saveBoolean(requireContext(), "longPressSwitch", isChecked);
@@ -522,7 +608,7 @@ public class ButtonsSettingsFragment extends Fragment {
                     longclickOneOrRegular = "oneLongClick";
                     SharedPreferencesUtils.saveInteger(requireContext(), "checkLongClick", 0);
                     SharedPreferencesUtils.saveInteger(requireContext(), "longclick", R.id.oneLongClick);
-                    requireActivity().recreate();
+                    //requireActivity().recreate();
                     break;
                 case R.id.regularLongClick:
 
@@ -541,6 +627,12 @@ public class ButtonsSettingsFragment extends Fragment {
                     b.resetValLongLayout.setVisibility(View.VISIBLE);
                     b.saveLongClickObserver.setVisibility(View.VISIBLE);
 
+                    b.textViewLongClickLayout.setVisibility(View.VISIBLE);
+                    b.plusValLongLayout.setVisibility(View.VISIBLE);
+                    b.minusValLongLayout.setVisibility(View.VISIBLE);
+                    b.resetValLongLayout.setVisibility(View.VISIBLE);
+                    b.saveLongClickObserver.setVisibility(View.VISIBLE);
+
                     //b.plusValueLongClickInput.setText(SharedPreferencesUtils.getInteger(requireContext(), "plusValueClickInput", 1));
                     //b.minusValueLongClickInput.setText(SharedPreferencesUtils.getInteger(requireContext(), "minusValueClickInput", 1));
                     //b.resetValueLongClickInput.setText(SharedPreferencesUtils.getInteger(requireContext(), "resetValueClickInput", 1));
@@ -549,14 +641,14 @@ public class ButtonsSettingsFragment extends Fragment {
                     longclickOneOrRegular = "regularLongClick";
                     SharedPreferencesUtils.saveInteger(requireContext(), "checkLongClick", 1);
                     SharedPreferencesUtils.saveInteger(requireContext(), "longclick", R.id.regularLongClick);
-                    requireActivity().recreate();
+                    //requireActivity().recreate();
                     break;
             }
         });
 
         b.saveLongClickObserver.setOnClickListener(v -> {
             if (b.plusValueLongClickInput.getText() == null || b.plusValueLongClickInput.getText().toString() == "") {
-                b.plusValueLongClickInput.setText(Integer.parseInt("1"));
+                b.plusValueLongClickInput.setText("1");
             }
             SharedPreferencesUtils.saveInteger(requireContext(), "plusValueLongClickInput",
                     Integer.parseInt(Objects.requireNonNull(b.plusValueLongClickInput.getText()).toString()));
