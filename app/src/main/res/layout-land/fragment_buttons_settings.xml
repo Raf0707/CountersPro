@@ -257,7 +257,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:imeOptions="actionDone"
+                            android:imeOptions="flagNavigateNext"
                             android:inputType="number"
                             
                             android:textAllCaps="true"
@@ -278,7 +278,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:imeOptions="actionDone"
+                            android:imeOptions="flagNavigateNext"
                             android:inputType="number"
                             
                             android:textAllCaps="true"
@@ -301,7 +301,6 @@
                             android:gravity="center"
                             android:imeOptions="actionDone"
                             android:inputType="number"
-                            
                             android:textAllCaps="true"
                             android:textColorHint="@color/white"
                             android:textSize="18sp" />
@@ -405,7 +404,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:imeOptions="actionDone"
+                            android:imeOptions="flagNavigateNext"
                             android:inputType="number"
                             
                             android:textAllCaps="true"
@@ -426,7 +425,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:imeOptions="actionDone"
+                            android:imeOptions="flagNavigateNext"
                             android:inputType="number"
                             
                             android:textAllCaps="true"
@@ -449,7 +448,6 @@
                             android:gravity="center"
                             android:imeOptions="actionDone"
                             android:inputType="number"
-                            
                             android:textAllCaps="true"
                             android:textColorHint="@color/white"
                             android:textSize="18sp" />
