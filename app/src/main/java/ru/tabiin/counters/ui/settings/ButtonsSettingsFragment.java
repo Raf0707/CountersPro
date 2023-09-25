@@ -56,13 +56,7 @@ public class ButtonsSettingsFragment extends Fragment {
                              Bundle savedInstanceState) {
         b = FragmentButtonsSettingsBinding.inflate(getLayoutInflater());
 
-        b.clickVibratorRadioGroup.setVisibility(View.GONE);
-        b.vibratorCounterBtnsSwitch.setVisibility(View.GONE);
-        b.vibratorToolBarBtnSwitch.setVisibility(View.GONE);
         b.clickVibratorEndSwitch.setVisibility(View.GONE);
-        b.counterBtnsCheckVibrateLayout.setVisibility(View.GONE);
-        b.toolbarBtnsCheckVibrateLayoutLeft.setVisibility(View.GONE);
-        b.toolbarBtnsCheckVibrateLayoutRight.setVisibility(View.GONE);
         b.textViewClickLayout.setVisibility(View.GONE);
         b.plusValLayout.setVisibility(View.GONE);
         b.minusValLayout.setVisibility(View.GONE);
@@ -96,46 +90,6 @@ public class ButtonsSettingsFragment extends Fragment {
             b.clickVibrateSlider.setVisibility(View.VISIBLE);
             b.clickVibrateSlider.setValue(SharedPreferencesUtils.getInteger(requireContext(), "clickVibrateSlider", 50));
 
-            b.clickVibratorRadioGroup.setVisibility(View.VISIBLE);
-            b.clickVibratorRadioGroup.check(SharedPreferencesUtils.getInteger(requireContext(), "vibration"));
-
-            if (b.partVibration.isChecked()) {
-
-                b.vibratorCounterBtnsSwitch.setVisibility(View.VISIBLE);
-                b.vibratorCounterBtnsSwitch.setChecked(SharedPreferencesUtils.getBoolean(requireContext(), "vibratorCounterBtnsSwitch"));
-                if (b.vibratorCounterBtnsSwitch.isChecked()) {
-                    b.counterBtnsCheckVibrateLayout.setVisibility(View.VISIBLE);
-                    b.plusBtnSetVib.setChecked(SharedPreferencesUtils.getInteger(requireContext(), "plusBtnSetVib") == 1);
-                    b.minusBtnSetVib.setChecked(SharedPreferencesUtils.getInteger(requireContext(), "minusBtnSetVib") == 1);
-                    b.resetBtnSetVib.setChecked(SharedPreferencesUtils.getInteger(requireContext(), "resetBtnSetVib") == 1);
-                    SharedPreferencesUtils.saveBoolean(requireContext(), "vibratorCounterBtnsSwitch", b.vibratorCounterBtnsSwitch.isChecked());
-                }
-
-                b.vibratorToolBarBtnSwitch.setVisibility(View.VISIBLE);
-                b.vibratorToolBarBtnSwitch.setChecked(SharedPreferencesUtils.getBoolean(requireContext(), "vibratorToolBarBtnSwitch"));
-                if (b.vibratorToolBarBtnSwitch.isChecked()) {
-                    b.toolbarBtnsCheckVibrateLayoutRight.setVisibility(View.VISIBLE);
-                    b.toolbarBtnsCheckVibrateLayoutLeft.setVisibility(View.VISIBLE);
-
-                    b.settingsBtnSetVib.setChecked(SharedPreferencesUtils.getInteger(requireContext(), "settingsBtnSetVib") == 1);
-                    b.tutorialBtnSetVib.setChecked(SharedPreferencesUtils.getInteger(requireContext(), "tutorialBtnSetVib") == 1);
-                    b.saveBtnSetVib.setChecked(SharedPreferencesUtils.getInteger(requireContext(), "saveBtnSetVib") == 1);
-
-                    b.editBtnSetVib.setChecked(SharedPreferencesUtils.getInteger(requireContext(), "editBtnSetVib") == 1);
-                    b.deleteBtnSetVib.setChecked(SharedPreferencesUtils.getInteger(requireContext(), "deleteBtnSetVib") == 1);
-                    b.listBtnSetVib.setChecked(SharedPreferencesUtils.getInteger(requireContext(), "listBtnSetVib") == 1);
-
-                }
-
-            } else if (b.fullVibration.isChecked()) {
-                b.vibratorCounterBtnsSwitch.setVisibility(View.GONE);
-                b.counterBtnsCheckVibrateLayout.setVisibility(View.GONE);
-                b.vibratorToolBarBtnSwitch.setVisibility(View.GONE);
-                b.toolbarBtnsCheckVibrateLayoutRight.setVisibility(View.GONE);
-                b.toolbarBtnsCheckVibrateLayoutLeft.setVisibility(View.GONE);
-                b.counterBtnsCheckVibrateLayout.setVisibility(View.GONE);
-            }
-
             b.clickVibratorEndSwitch.setVisibility(View.VISIBLE);
             b.clickVibratorEndSwitch.setChecked(SharedPreferencesUtils.getBoolean(requireContext(), "clickVibratorEndSwitch"));
             if (b.clickVibratorEndSwitch.isChecked()) {
@@ -144,24 +98,9 @@ public class ButtonsSettingsFragment extends Fragment {
             }
 
         } else {
-            b.clickVibratorRadioGroup.setVisibility(View.GONE);
-            b.vibratorCounterBtnsSwitch.setVisibility(View.GONE);
-            b.vibratorToolBarBtnSwitch.setVisibility(View.GONE);
             b.clickVibratorEndSwitch.setVisibility(View.GONE);
             b.clickVibrateSlider.setVisibility(View.GONE);
             b.endTargetVibrateSlider.setVisibility(View.GONE);
-            b.toolbarBtnsCheckVibrateLayoutRight.setVisibility(View.GONE);
-            b.toolbarBtnsCheckVibrateLayoutLeft.setVisibility(View.GONE);
-            b.counterBtnsCheckVibrateLayout.setVisibility(View.GONE);
-            b.plusBtnSetVib.setVisibility(View.GONE);
-            b.minusBtnSetVib.setVisibility(View.GONE);
-            b.resetBtnSetVib.setVisibility(View.GONE);
-            b.settingsBtnSetVib.setVisibility(View.GONE);
-            b.tutorialBtnSetVib.setVisibility(View.GONE);
-            b.saveBtnSetVib.setVisibility(View.GONE);
-            b.editBtnSetVib.setVisibility(View.GONE);
-            b.deleteBtnSetVib.setVisibility(View.GONE);
-            b.listBtnSetVib.setVisibility(View.GONE);
         }
 
         b.clickListenerSwitch.setChecked(SharedPreferencesUtils.getBoolean(requireContext(), "clickListenerSwitch"));
@@ -196,7 +135,7 @@ public class ButtonsSettingsFragment extends Fragment {
                 b.clickLongVibrateSlider.setValue(SharedPreferencesUtils.getInteger(requireContext(), "clickLongVibrateSlider"));
             }
             b.longPressRadioGroup.setVisibility(View.VISIBLE);
-            if (SharedPreferencesUtils.getBoolean(requireContext(), "regularLongClick")) {
+            if (b.regularLongClick.isChecked()) {
                 b.textViewLongClickLayout.setVisibility(View.VISIBLE);
                 b.plusValLongLayout.setVisibility(View.VISIBLE);
                 b.minusValLongLayout.setVisibility(View.VISIBLE);
@@ -226,13 +165,6 @@ public class ButtonsSettingsFragment extends Fragment {
             b.clickLongVibrateSlider.setVisibility(View.GONE);
         }
 
-        if (b.regularLongClick.isChecked()) {
-            b.textViewLongClickLayout.setVisibility(View.VISIBLE);
-            b.plusValLongLayout.setVisibility(View.VISIBLE);
-            b.minusValLongLayout.setVisibility(View.VISIBLE);
-            b.resetValLongLayout.setVisibility(View.VISIBLE);
-            b.saveLongClickObserver.setVisibility(View.VISIBLE);
-        }
 
         return b.getRoot();
     }
@@ -246,31 +178,12 @@ public class ButtonsSettingsFragment extends Fragment {
                 AlphaAnimation animation = new AlphaAnimation(0, 1);
                 animation.setDuration(1000);
 
-                b.clickVibratorRadioGroup.startAnimation(animation);
                 b.clickVibratorEndSwitch.startAnimation(animation);
                 b.clickVibrateSlider.startAnimation(animation);
 
                 b.clickVibrateSlider.setVisibility(View.VISIBLE);
                 b.clickVibrateSlider.setValue(SharedPreferencesUtils.getInteger(requireContext(), "clickVibrateSlider", 50));
-                b.clickVibratorRadioGroup.setVisibility(View.VISIBLE);
 
-                b.vibratorCounterBtnsSwitch.setVisibility(View.VISIBLE);
-                b.vibratorToolBarBtnSwitch.setVisibility(View.VISIBLE);
-
-                if (b.vibratorCounterBtnsSwitch.isChecked()) {
-                    b.plusBtnSetVib.setVisibility(View.VISIBLE);
-                    b.minusBtnSetVib.setVisibility(View.VISIBLE);
-                    b.resetBtnSetVib.setVisibility(View.VISIBLE);
-                }
-
-                if (b.vibratorToolBarBtnSwitch.isChecked()) {
-                    b.settingsBtnSetVib.setVisibility(View.VISIBLE);
-                    b.tutorialBtnSetVib.setVisibility(View.VISIBLE);
-                    b.saveBtnSetVib.setVisibility(View.VISIBLE);
-                    b.editBtnSetVib.setVisibility(View.VISIBLE);
-                    b.deleteBtnSetVib.setVisibility(View.VISIBLE);
-                    b.listBtnSetVib.setVisibility(View.VISIBLE);
-                }
                 b.clickVibratorEndSwitch.setVisibility(View.VISIBLE);
                 b.clickVibratorEndSwitch.setChecked(SharedPreferencesUtils.getBoolean(requireContext(), "clickVibratorEndSwitch"));
 
@@ -280,22 +193,9 @@ public class ButtonsSettingsFragment extends Fragment {
                 }
 
             } else {
-                b.clickVibratorRadioGroup.setVisibility(View.GONE);
-                b.vibratorCounterBtnsSwitch.setVisibility(View.GONE);
-                b.vibratorToolBarBtnSwitch.setVisibility(View.GONE);
                 b.clickVibratorEndSwitch.setVisibility(View.GONE);
                 b.clickVibrateSlider.setVisibility(View.GONE);
                 b.endTargetVibrateSlider.setVisibility(View.GONE);
-
-                b.plusBtnSetVib.setVisibility(View.GONE);
-                b.minusBtnSetVib.setVisibility(View.GONE);
-                b.resetBtnSetVib.setVisibility(View.GONE);
-                b.settingsBtnSetVib.setVisibility(View.GONE);
-                b.tutorialBtnSetVib.setVisibility(View.GONE);
-                b.saveBtnSetVib.setVisibility(View.GONE);
-                b.editBtnSetVib.setVisibility(View.GONE);
-                b.deleteBtnSetVib.setVisibility(View.GONE);
-                b.listBtnSetVib.setVisibility(View.GONE);
             }
 
             SharedPreferencesUtils.saveBoolean(requireContext(), "vibratorBtnsSwitch", isChecked);
@@ -315,192 +215,11 @@ public class ButtonsSettingsFragment extends Fragment {
             }
         });
 
-        b.clickVibratorRadioGroup.check(SharedPreferencesUtils.getInteger(requireContext(), "vibration"));
-        b.clickVibratorRadioGroup.setOnCheckedChangeListener((group, checkedId) -> {
-            switch (checkedId) {
-                case R.id.fullVibration:
-                    //full vibration
-                    b.vibratorToolBarBtnSwitch.setVisibility(View.GONE);
-                    b.vibratorCounterBtnsSwitch.setVisibility(View.GONE);
-                    b.counterBtnsCheckVibrateLayout.setVisibility(View.GONE);
-                    b.toolbarBtnsCheckVibrateLayoutRight.setVisibility(View.GONE);
-                    b.toolbarBtnsCheckVibrateLayoutLeft.setVisibility(View.GONE);
 
-                    b.plusBtnSetVib.setVisibility(View.GONE);
-                    b.minusBtnSetVib.setVisibility(View.GONE);
-                    b.resetBtnSetVib.setVisibility(View.GONE);
-                    b.settingsBtnSetVib.setVisibility(View.GONE);
-                    b.tutorialBtnSetVib.setVisibility(View.GONE);
-                    b.saveBtnSetVib.setVisibility(View.GONE);
-                    b.editBtnSetVib.setVisibility(View.GONE);
-                    b.deleteBtnSetVib.setVisibility(View.GONE);
-                    b.listBtnSetVib.setVisibility(View.GONE);
-
-                    vibRadioFullOrPart = "fullVib";
-                    SharedPreferencesUtils.saveInteger(requireContext(), "checkVib", 0);
-                    SharedPreferencesUtils.saveInteger(requireContext(), "vibration", R.id.fullVibration);
-                    //requireActivity().recreate();
-                    break;
-                case R.id.partVibration:
-                    AlphaAnimation animation = new AlphaAnimation(0, 1);
-                    animation.setDuration(1000);
-                    b.vibratorToolBarBtnSwitch.startAnimation(animation);
-                    b.vibratorCounterBtnsSwitch.startAnimation(animation);
-                    b.vibratorToolBarBtnSwitch.setVisibility(View.VISIBLE);
-                    b.vibratorToolBarBtnSwitch.setChecked(SharedPreferencesUtils.getBoolean(requireContext(), "vibratorToolBarBtnSwitch"));
-                    if (b.vibratorToolBarBtnSwitch.isChecked()) {
-                        b.toolbarBtnsCheckVibrateLayoutRight.setVisibility(View.VISIBLE);
-                        b.toolbarBtnsCheckVibrateLayoutLeft.setVisibility(View.VISIBLE);
-
-                        b.settingsBtnSetVib.setVisibility(View.VISIBLE);
-                        b.tutorialBtnSetVib.setVisibility(View.VISIBLE);
-                        b.saveBtnSetVib.setVisibility(View.VISIBLE);
-                        b.editBtnSetVib.setVisibility(View.VISIBLE);
-                        b.deleteBtnSetVib.setVisibility(View.VISIBLE);
-                        b.listBtnSetVib.setVisibility(View.VISIBLE);
-
-                        b.settingsBtnSetVib.setChecked(SharedPreferencesUtils.getInteger(requireContext(), "settingsBtnSetVib") == 1);
-                        b.tutorialBtnSetVib.setChecked(SharedPreferencesUtils.getInteger(requireContext(), "tutorialBtnSetVib") == 1);
-                        b.saveBtnSetVib.setChecked(SharedPreferencesUtils.getInteger(requireContext(), "saveBtnSetVib") == 1);
-
-                        b.editBtnSetVib.setChecked(SharedPreferencesUtils.getInteger(requireContext(), "editBtnSetVib") == 1);
-                        b.deleteBtnSetVib.setChecked(SharedPreferencesUtils.getInteger(requireContext(), "deleteBtnSetVib") == 1);
-                        b.listBtnSetVib.setChecked(SharedPreferencesUtils.getInteger(requireContext(), "listBtnSetVib") == 1);
-
-                    } else {
-                        b.toolbarBtnsCheckVibrateLayoutRight.setVisibility(View.GONE);
-                        b.toolbarBtnsCheckVibrateLayoutLeft.setVisibility(View.GONE);
-                        b.settingsBtnSetVib.setVisibility(View.GONE);
-                        b.tutorialBtnSetVib.setVisibility(View.GONE);
-                        b.saveBtnSetVib.setVisibility(View.GONE);
-                        b.editBtnSetVib.setVisibility(View.GONE);
-                        b.deleteBtnSetVib.setVisibility(View.GONE);
-                        b.listBtnSetVib.setVisibility(View.GONE);
-                    }
-
-                    b.vibratorCounterBtnsSwitch.setVisibility(View.VISIBLE);
-                    b.vibratorCounterBtnsSwitch.setChecked(SharedPreferencesUtils.getBoolean(requireContext(), "vibratorCounterBtnsSwitch"));
-                    if (b.vibratorCounterBtnsSwitch.isChecked()) {
-                        b.counterBtnsCheckVibrateLayout.setVisibility(View.VISIBLE);
-
-                        b.plusBtnSetVib.setVisibility(View.VISIBLE);
-                        b.minusBtnSetVib.setVisibility(View.VISIBLE);
-                        b.resetBtnSetVib.setVisibility(View.VISIBLE);
-
-                        b.plusBtnSetVib.setChecked(SharedPreferencesUtils.getInteger(requireContext(), "plusBtnSetVib") == 1);
-                        b.minusBtnSetVib.setChecked(SharedPreferencesUtils.getInteger(requireContext(), "minusBtnSetVib") == 1);
-                        b.resetBtnSetVib.setChecked(SharedPreferencesUtils.getInteger(requireContext(), "resetBtnSetVib") == 1);
-                    } else {
-                        b.counterBtnsCheckVibrateLayout.setVisibility(View.GONE);
-                        b.plusBtnSetVib.setVisibility(View.GONE);
-                        b.minusBtnSetVib.setVisibility(View.GONE);
-                        b.resetBtnSetVib.setVisibility(View.GONE);
-                    }
-
-                    SharedPreferencesUtils.saveBoolean(requireContext(), "vibratorCounterBtnsSwitch", b.vibratorCounterBtnsSwitch.isChecked());
-
-                    vibRadioFullOrPart = "partVib";
-                    SharedPreferencesUtils.saveInteger(requireContext(), "checkVib", 1);
-                    SharedPreferencesUtils.saveInteger(requireContext(), "vibration", R.id.partVibration);
-                    //requireActivity().recreate();
-                    //break;
-            }
-
-        });
-
-        b.vibratorCounterBtnsSwitch.setOnCheckedChangeListener((v, isChecked) -> {
-            if (isChecked) {
-                Animation animation = new AlphaAnimation(0, 1);
-                b.counterBtnsCheckVibrateLayout.startAnimation(animation);
-                b.counterBtnsCheckVibrateLayout.setVisibility(View.VISIBLE);
-
-                b.plusBtnSetVib.setChecked(SharedPreferencesUtils.getInteger(requireContext(), "plusBtnSetVib") == 1);
-                b.minusBtnSetVib.setChecked(SharedPreferencesUtils.getInteger(requireContext(), "minusBtnSetVib") == 1);
-                b.resetBtnSetVib.setChecked(SharedPreferencesUtils.getInteger(requireContext(), "resetBtnSetVib") == 1);
-
-
-            } else {
-                b.counterBtnsCheckVibrateLayout.setVisibility(View.GONE);
-            }
-
-            SharedPreferencesUtils.saveBoolean(requireContext(), "vibratorCounterBtnsSwitch", isChecked);
-            //requireActivity().recreate();
-        });
-
-        b.plusBtnSetVib.addOnCheckedStateChangedListener((checkBox, state) -> {
-            SharedPreferencesUtils.saveInteger(requireContext(), "plusBtnSetVib", state);
-            requireActivity().recreate();
-        });
-
-        b.minusBtnSetVib.addOnCheckedStateChangedListener((checkBox, state) -> {
-            SharedPreferencesUtils.saveInteger(requireContext(), "minusBtnSetVib", state);
-            requireActivity().recreate();
-        });
-
-        b.resetBtnSetVib.addOnCheckedStateChangedListener((checkBox, state) -> {
-            SharedPreferencesUtils.saveInteger(requireContext(), "resetBtnSetVib", state);
-            requireActivity().recreate();
-        });
-
-        b.vibratorToolBarBtnSwitch.setOnCheckedChangeListener((v, isChecked) -> {
-            if (isChecked) {
-                Animation animation = new AlphaAnimation(0, 1);
-                b.toolbarBtnsCheckVibrateLayoutRight.startAnimation(animation);
-                b.toolbarBtnsCheckVibrateLayoutLeft.startAnimation(animation);
-
-                b.toolbarBtnsCheckVibrateLayoutRight.setVisibility(View.VISIBLE);
-                b.settingsBtnSetVib.setChecked(SharedPreferencesUtils.getInteger(requireContext(), "settingsBtnSetVib") == 1);
-                b.tutorialBtnSetVib.setChecked(SharedPreferencesUtils.getInteger(requireContext(), "tutorialBtnSetVib") == 1);
-                b.saveBtnSetVib.setChecked(SharedPreferencesUtils.getInteger(requireContext(), "saveBtnSetVib") == 1);
-
-                b.toolbarBtnsCheckVibrateLayoutLeft.setVisibility(View.VISIBLE);
-                b.editBtnSetVib.setChecked(SharedPreferencesUtils.getInteger(requireContext(), "editBtnSetVib") == 1);
-                b.deleteBtnSetVib.setChecked(SharedPreferencesUtils.getInteger(requireContext(), "deleteBtnSetVib") == 1);
-                b.listBtnSetVib.setChecked(SharedPreferencesUtils.getInteger(requireContext(), "listBtnSetVib") == 1);
-
-            } else {
-                b.toolbarBtnsCheckVibrateLayoutRight.setVisibility(View.GONE);
-                b.toolbarBtnsCheckVibrateLayoutLeft.setVisibility(View.GONE);
-            }
-
-            SharedPreferencesUtils.saveBoolean(requireContext(), "vibratorToolBarBtnSwitch", isChecked);
-            //requireActivity().recreate();
-        });
-
-        b.settingsBtnSetVib.addOnCheckedStateChangedListener((checkBox, state) -> {
-            SharedPreferencesUtils.saveInteger(requireContext(), "settingsBtnSetVib", state);
-            requireActivity().recreate();
-        });
-
-        b.tutorialBtnSetVib.addOnCheckedStateChangedListener((checkBox, state) -> {
-            SharedPreferencesUtils.saveInteger(requireContext(), "tutorialBtnSetVib", state);
-            requireActivity().recreate();
-        });
-
-        b.saveBtnSetVib.addOnCheckedStateChangedListener((checkBox, state) -> {
-            SharedPreferencesUtils.saveInteger(requireContext(), "saveBtnSetVib", state);
-            requireActivity().recreate();
-        });
-
-        b.editBtnSetVib.addOnCheckedStateChangedListener((checkBox, state) -> {
-            SharedPreferencesUtils.saveInteger(requireContext(), "editBtnSetVib", state);
-            requireActivity().recreate();
-        });
-
-        b.deleteBtnSetVib.addOnCheckedStateChangedListener((checkBox, state) -> {
-            SharedPreferencesUtils.saveInteger(requireContext(), "deleteBtnSetVib", state);
-            requireActivity().recreate();
-        });
-
-        b.listBtnSetVib.addOnCheckedStateChangedListener((checkBox, state) -> {
-            SharedPreferencesUtils.saveInteger(requireContext(), "listBtnSetVib", state);
-            requireActivity().recreate();
-        });
 
         b.clickVibratorEndSwitch.setOnCheckedChangeListener((v, isChecked) -> {
             if (isChecked) {
                 Animation animation = new AlphaAnimation(0, 1);
-                b.counterBtnsCheckVibrateLayout.startAnimation(animation);
                 b.endTargetVibrateSlider.setVisibility(View.VISIBLE);
                 b.endTargetVibrateSlider.setValue(SharedPreferencesUtils.getInteger(requireContext(), "endTargetVibrateSlider", 500));
             } else {
@@ -621,15 +340,6 @@ public class ButtonsSettingsFragment extends Fragment {
                     b.minusValueLongClickInput.setVisibility(View.VISIBLE);
                     b.resetValueLongClickInput.setVisibility(View.VISIBLE);
                     b.saveLongClickObserver.setVisibility(View.VISIBLE);
-                } else if (b.oneLongClick.isChecked()) {
-                    b.textViewLongClickLayout.setVisibility(View.GONE);
-                    b.plusValLongLayout.setVisibility(View.GONE);
-                    b.minusValLongLayout.setVisibility(View.GONE);
-                    b.resetValLongLayout.setVisibility(View.GONE);
-                    b.plusValueLongClickInput.setVisibility(View.GONE);
-                    b.minusValueLongClickInput.setVisibility(View.GONE);
-                    b.resetValueLongClickInput.setVisibility(View.GONE);
-                    b.saveLongClickObserver.setVisibility(View.GONE);
                 }
             } else {
                 b.longPressRadioGroup.setVisibility(View.GONE);
