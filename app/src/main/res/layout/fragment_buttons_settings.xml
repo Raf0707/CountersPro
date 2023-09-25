@@ -259,10 +259,6 @@
                             android:gravity="center"
                             android:imeOptions="actionDone"
                             android:inputType="number"
-                            android:shadowColor="@color/purple_400"
-                            android:shadowDx="3"
-                            android:shadowDy="3"
-                            android:shadowRadius="1.6"
                             android:textAllCaps="true"
                             android:textColorHint="@color/white"
                             android:textSize="18sp" />
@@ -283,10 +279,6 @@
                             android:gravity="center"
                             android:imeOptions="actionDone"
                             android:inputType="number"
-                            android:shadowColor="@color/purple_400"
-                            android:shadowDx="3"
-                            android:shadowDy="3"
-                            android:shadowRadius="1.6"
                             android:textAllCaps="true"
                             android:textColorHint="@color/white"
                             android:textSize="18sp" />
@@ -307,10 +299,7 @@
                             android:gravity="center"
                             android:imeOptions="actionDone"
                             android:inputType="number"
-                            android:shadowColor="@color/purple_400"
-                            android:shadowDx="3"
-                            android:shadowDy="3"
-                            android:shadowRadius="1.6"
+                            
                             android:textAllCaps="true"
                             android:textColorHint="@color/white"
                             android:textSize="18sp" />
@@ -416,10 +405,7 @@
                             android:gravity="center"
                             android:imeOptions="actionDone"
                             android:inputType="number"
-                            android:shadowColor="@color/purple_400"
-                            android:shadowDx="3"
-                            android:shadowDy="3"
-                            android:shadowRadius="1.6"
+                            
                             android:textAllCaps="true"
                             android:textColorHint="@color/white"
                             android:textSize="18sp" />
@@ -440,10 +426,7 @@
                             android:gravity="center"
                             android:imeOptions="actionDone"
                             android:inputType="number"
-                            android:shadowColor="@color/purple_400"
-                            android:shadowDx="3"
-                            android:shadowDy="3"
-                            android:shadowRadius="1.6"
+                            
                             android:textAllCaps="true"
                             android:textColorHint="@color/white"
                             android:textSize="18sp" />
@@ -464,10 +447,7 @@
                             android:gravity="center"
                             android:imeOptions="actionDone"
                             android:inputType="number"
-                            android:shadowColor="@color/purple_400"
-                            android:shadowDx="3"
-                            android:shadowDy="3"
-                            android:shadowRadius="1.6"
+                            
                             android:textAllCaps="true"
                             android:textColorHint="@color/white"
                             android:textSize="18sp" />

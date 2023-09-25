@@ -50,9 +50,7 @@ public class ButtonsSettingsFragment extends Fragment {
      * @return binding.getRoot()
      */
 
-    /*
-    сделать Слайдер для вибрации при долгих нажатиях
-     */
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
