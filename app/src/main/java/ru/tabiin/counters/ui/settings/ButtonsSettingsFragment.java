@@ -76,13 +76,13 @@ public class ButtonsSettingsFragment extends Fragment {
         b.resetValLongLayout.setVisibility(View.GONE);
         b.saveLongClickObserver.setVisibility(View.GONE);
 
-        plusClickValue = SharedPreferencesUtils.getInteger(requireContext(), "plusValueClickInput");
-        minusClickValue = SharedPreferencesUtils.getInteger(requireContext(), "minusValueClickInput");
-        resetClickValue = SharedPreferencesUtils.getInteger(requireContext(), "resetValueClickInput");
+        if (b.plusValueClickInput != null) plusClickValue = SharedPreferencesUtils.getInteger(requireContext(), "plusValueClickInput");
+        if (b.minusValueClickInput != null) minusClickValue = SharedPreferencesUtils.getInteger(requireContext(), "minusValueClickInput");
+        if (b.resetValueClickInput != null) resetClickValue = SharedPreferencesUtils.getInteger(requireContext(), "resetValueClickInput");
 
-        plusLongClickValue = SharedPreferencesUtils.getInteger(requireContext(), "plusValueLongClickInput");
-        minusLongClickValue = SharedPreferencesUtils.getInteger(requireContext(), "minusValueLongClickInput");
-        resetLongClickValue = SharedPreferencesUtils.getInteger(requireContext(), "resetValueLongClickInput");
+        if (b.plusValueLongClickInput != null) plusLongClickValue = SharedPreferencesUtils.getInteger(requireContext(), "plusValueLongClickInput");
+        if (b.minusValueLongClickInput != null) minusLongClickValue = SharedPreferencesUtils.getInteger(requireContext(), "minusValueLongClickInput");
+        if (b.resetValueLongClickInput != null) resetLongClickValue = SharedPreferencesUtils.getInteger(requireContext(), "resetValueLongClickInput");
 
         b.vibratorBtnsSwitch.setChecked(SharedPreferencesUtils.getBoolean(requireContext(), "vibratorBtnsSwitch"));
 
@@ -278,8 +278,13 @@ public class ButtonsSettingsFragment extends Fragment {
         });
 
         b.saveClickObserver.setOnClickListener(v -> {
+
+            b.plusValueClickInput.setText(String.valueOf(plusClickValue).replaceAll("[\\.\\-,\\s]+", ""));
+            b.minusValueClickInput.setText(String.valueOf(minusClickValue).replaceAll("[\\.\\-,\\s]+", ""));
+            b.resetValueClickInput.setText(String.valueOf(resetClickValue).replaceAll("[\\.\\-,\\s]+", ""));
+
             if (b.plusValueClickInput.getText() == null || b.plusValueClickInput.getText().toString() == "") {
-                b.plusValueClickInput.setText(plusClickValue);
+                b.plusValueClickInput.setText(String.valueOf(1).replaceAll("[\\.\\-,\\s]+", ""));
             }
             SharedPreferencesUtils.saveInteger(requireContext(), "plusValueClickInput",
                     Integer.parseInt(Objects.requireNonNull(b.plusValueClickInput.getText()).toString()));
@@ -287,7 +292,7 @@ public class ButtonsSettingsFragment extends Fragment {
             plusClickValue = Integer.parseInt(b.plusValueClickInput.getText().toString());
 
             if (b.minusValueClickInput.getText() == null || b.minusValueClickInput.getText().toString() == "") {
-                b.minusValueClickInput.setText(minusClickValue);
+                b.minusValueClickInput.setText(String.valueOf(1).replaceAll("[\\.\\-,\\s]+", ""));
             }
             SharedPreferencesUtils.saveInteger(requireContext(), "minusValueClickInput",
                     Integer.parseInt(Objects.requireNonNull(b.minusValueClickInput.getText()).toString()));
@@ -295,7 +300,7 @@ public class ButtonsSettingsFragment extends Fragment {
             minusClickValue = Integer.parseInt(b.minusValueClickInput.getText().toString());
 
             if (b.resetValueClickInput.getText() == null || b.resetValueClickInput.getText().toString() == "") {
-                b.resetValueClickInput.setText(resetClickValue);
+                b.resetValueClickInput.setText(String.valueOf(0).replaceAll("[\\.\\-,\\s]+", ""));
             }
             SharedPreferencesUtils.saveInteger(requireContext(), "resetValueClickInput",
                     Integer.parseInt(Objects.requireNonNull(b.resetValueClickInput.getText()).toString()));
@@ -436,8 +441,13 @@ public class ButtonsSettingsFragment extends Fragment {
         });
 
         b.saveLongClickObserver.setOnClickListener(v -> {
+
+            b.plusValueLongClickInput.setText(String.valueOf(plusLongClickValue).replaceAll("[\\.\\-,\\s]+", ""));
+            b.minusValueLongClickInput.setText(String.valueOf(minusLongClickValue).replaceAll("[\\.\\-,\\s]+", ""));
+            b.resetValueLongClickInput.setText(String.valueOf(resetLongClickValue).replaceAll("[\\.\\-,\\s]+", ""));
+
             if (b.plusValueLongClickInput.getText() == null || b.plusValueLongClickInput.getText().toString() == "") {
-                b.plusValueLongClickInput.setText(plusLongClickValue);
+                b.plusValueLongClickInput.setText(String.valueOf(1).replaceAll("[\\.\\-,\\s]+", ""));
             }
 
             SharedPreferencesUtils.saveInteger(requireContext(), "plusValueLongClickInput",
@@ -446,7 +456,7 @@ public class ButtonsSettingsFragment extends Fragment {
             plusLongClickValue = Integer.parseInt(b.plusValueLongClickInput.getText().toString());
 
             if (b.minusValueLongClickInput.getText() == null || b.minusValueLongClickInput.getText().toString() == "") {
-                b.minusValueLongClickInput.setText(minusLongClickValue);
+                b.minusValueLongClickInput.setText(String.valueOf(1).replaceAll("[\\.\\-,\\s]+", ""));
             }
             SharedPreferencesUtils.saveInteger(requireContext(), "minusValueLongClickInput",
                     Integer.parseInt(Objects.requireNonNull(b.minusValueLongClickInput.getText()).toString()));
@@ -454,7 +464,7 @@ public class ButtonsSettingsFragment extends Fragment {
             minusLongClickValue = Integer.parseInt(b.minusValueLongClickInput.getText().toString());
 
             if (b.resetValueLongClickInput.getText() == null || b.resetValueLongClickInput.getText().toString() == "") {
-                b.resetValueLongClickInput.setText(resetLongClickValue);
+                b.resetValueLongClickInput.setText(String.valueOf(0).replaceAll("[\\.\\-,\\s]+", ""));
             }
             SharedPreferencesUtils.saveInteger(requireContext(), "resetValueLongClickInput",
                     Integer.parseInt(Objects.requireNonNull(b.resetValueLongClickInput.getText()).toString()));
