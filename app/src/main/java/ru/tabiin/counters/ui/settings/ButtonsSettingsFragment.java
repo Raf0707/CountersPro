@@ -28,6 +28,15 @@ public class ButtonsSettingsFragment extends Fragment {
     String vibRadioFullOrPart;
     String longclickOneOrRegular;
 
+    private int plusClickValue = 1;
+    private int minusClickValue = 1;
+    private int resetClickValue = 0;
+
+    private int plusLongClickValue = 1;
+    private int minusLongClickValue = 1;
+    private int resetLongClickValue = 0;
+
+
     /**
      *
      * @param inflater The LayoutInflater object that can be used to inflate
@@ -74,6 +83,10 @@ public class ButtonsSettingsFragment extends Fragment {
         b.minusValLongLayout.setVisibility(View.GONE);
         b.resetValLongLayout.setVisibility(View.GONE);
         b.saveLongClickObserver.setVisibility(View.GONE);
+
+        /*b.plusValueClickInput.setText(plusClickValue);
+        b.minusValueClickInput.setText(minusClickValue);
+        b.resetValueClickInput.setText(resetClickValue);*/
 
         b.vibratorBtnsSwitch.setChecked(SharedPreferencesUtils.getBoolean(requireContext(), "vibratorBtnsSwitch"));
 
@@ -521,9 +534,10 @@ public class ButtonsSettingsFragment extends Fragment {
                 b.resetValLayout.setVisibility(View.VISIBLE);
                 b.saveClickObserver.setVisibility(View.VISIBLE);
 
-                //b.plusValueClickInput.setText(SharedPreferencesUtils.getInteger(requireContext(), "plusValueClickInput", 1));
-                //b.minusValueClickInput.setText(SharedPreferencesUtils.getInteger(requireContext(), "minusValueClickInput", 1));
-                //b.resetValueClickInput.setText(SharedPreferencesUtils.getInteger(requireContext(), "resetValueClickInput", 1));
+
+                /*b.plusValueClickInput.setText(plusClickValue);
+                b.minusValueClickInput.setText(minusClickValue);
+                b.resetValueClickInput.setText(resetClickValue);*/
 
             } else {
                 b.textViewClickLayout.setVisibility(View.GONE);
@@ -539,19 +553,19 @@ public class ButtonsSettingsFragment extends Fragment {
 
         b.saveClickObserver.setOnClickListener(v -> {
             if (b.plusValueClickInput.getText() == null || b.plusValueClickInput.getText().toString() == "") {
-                b.plusValueClickInput.setText(Integer.parseInt("1"));
+                b.plusValueClickInput.setText(plusClickValue);
             }
             SharedPreferencesUtils.saveInteger(requireContext(), "plusValueClickInput",
                     Integer.parseInt(Objects.requireNonNull(b.plusValueClickInput.getText()).toString()));
 
             if (b.minusValueClickInput.getText() == null || b.minusValueClickInput.getText().toString() == "") {
-                b.minusValueClickInput.setText(Integer.parseInt("1"));
+                b.minusValueClickInput.setText(minusClickValue);
             }
             SharedPreferencesUtils.saveInteger(requireContext(), "minusValueClickInput",
                     Integer.parseInt(Objects.requireNonNull(b.minusValueClickInput.getText()).toString()));
 
             if (b.resetValueClickInput.getText() == null || b.resetValueClickInput.getText().toString() == "") {
-                b.resetValueClickInput.setText(Integer.parseInt("1"));
+                b.resetValueClickInput.setText(resetClickValue);
             }
             SharedPreferencesUtils.saveInteger(requireContext(), "resetValueClickInput",
                     Integer.parseInt(Objects.requireNonNull(b.resetValueClickInput.getText()).toString()));
@@ -686,10 +700,9 @@ public class ButtonsSettingsFragment extends Fragment {
                     b.resetValLongLayout.setVisibility(View.VISIBLE);
                     b.saveLongClickObserver.setVisibility(View.VISIBLE);
 
-                    //b.plusValueLongClickInput.setText(SharedPreferencesUtils.getInteger(requireContext(), "plusValueClickInput", 1));
-                    //b.minusValueLongClickInput.setText(SharedPreferencesUtils.getInteger(requireContext(), "minusValueClickInput", 1));
-                    //b.resetValueLongClickInput.setText(SharedPreferencesUtils.getInteger(requireContext(), "resetValueClickInput", 1));
-
+                    /*b.plusValueClickInput.setText(plusClickValue);
+                    b.minusValueClickInput.setText(minusClickValue);
+                    b.resetValueClickInput.setText(resetClickValue);*/
 
                     longclickOneOrRegular = "regularLongClick";
                     SharedPreferencesUtils.saveInteger(requireContext(), "checkLongClick", 1);
@@ -701,20 +714,20 @@ public class ButtonsSettingsFragment extends Fragment {
 
         b.saveLongClickObserver.setOnClickListener(v -> {
             if (b.plusValueLongClickInput.getText() == null || b.plusValueLongClickInput.getText().toString() == "") {
-                b.plusValueLongClickInput.setText("1");
+                b.plusValueLongClickInput.setText(plusLongClickValue);
             }
 
             SharedPreferencesUtils.saveInteger(requireContext(), "plusValueLongClickInput",
                     Integer.parseInt(Objects.requireNonNull(b.plusValueLongClickInput.getText()).toString()));
 
             if (b.minusValueLongClickInput.getText() == null || b.minusValueLongClickInput.getText().toString() == "") {
-                b.minusValueLongClickInput.setText(Integer.parseInt("1"));
+                b.minusValueLongClickInput.setText(minusLongClickValue);
             }
             SharedPreferencesUtils.saveInteger(requireContext(), "minusValueLongClickInput",
                     Integer.parseInt(Objects.requireNonNull(b.minusValueLongClickInput.getText()).toString()));
 
             if (b.resetValueLongClickInput.getText() == null || b.resetValueLongClickInput.getText().toString() == "") {
-                b.resetValueLongClickInput.setText(Integer.parseInt("1"));
+                b.resetValueLongClickInput.setText(resetLongClickValue);
             }
             SharedPreferencesUtils.saveInteger(requireContext(), "resetValueLongClickInput",
                     Integer.parseInt(Objects.requireNonNull(b.resetValueLongClickInput.getText()).toString()));
